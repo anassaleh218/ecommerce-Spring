@@ -1,4 +1,4 @@
-package eshopping.demo;
+package eshopping.demo.product;
 
 import org.springframework.data.repository.CrudRepository;
 
