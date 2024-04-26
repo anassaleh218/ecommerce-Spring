@@ -1,4 +1,4 @@
-package eshopping.demo;
+package eshopping.demo.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
