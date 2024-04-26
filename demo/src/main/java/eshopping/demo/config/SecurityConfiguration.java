@@ -79,6 +79,9 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfiguration {
 
     private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**",
+
+            "/app/**",
+
             "/v2/api-docs",
             "/v3/api-docs",
             "/v3/api-docs/**",
@@ -101,6 +104,9 @@ public class SecurityConfiguration {
                 req.requestMatchers(WHITE_LIST_URL)
                         .permitAll()
                         .requestMatchers("/api/v1/demo").hasAnyRole(ADMIN.name())
+
+                        .requestMatchers("/prod/create").hasAnyRole(ADMIN.name())
+
                         .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), USER.name())
                         .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), USER_READ.name())
                         .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), USER_CREATE.name())

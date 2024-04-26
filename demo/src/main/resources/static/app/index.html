@@ -1,7 +1,3 @@
-
-<!-- header -->
-<!-- header -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,175 +26,163 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container" style="min-width: 1220px;">
-          <a class="navbar-brand logo_h" href="index.php">
+          <a class="navbar-brand logo_h" href="index.html">
             <!-- <img src="asstes/img/logo.png" alt=""> -->
             <h3 class="title">E-Shopping</h3>
           </a>
 
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link homebtn" href="index.php">Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="admin.php">Admin</a></li>
-            </ul>
-            <li class="nav-item"><a class="nav-link" href="add-product.php">Add Product</a></li>
-            <li class="nav-item"><a class="nav-link" href="manage-products.php">Manage Products</a></li>
-            </ul>
-            <li class="nav-item"><a class="nav-link" href="products.php">Shop Category</a></li>
-            <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">preferences</a>
-              <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="fav-products.php">Favourites</a></li>
-                <li class="nav-item"><a class="nav-link" href="watchlist.php">Watch List</a></li>
-              </ul>
-            </li>
+		  <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+			<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+			<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
 
-            <li class="nav-item"><a class="nav-link" href="my-orders.php">My Orders</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-              <li class="nav-item"><a href="products.php"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-              <li class="nav-item"><a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
-            </ul>
-
-            
-
-          </ul>
-          <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-            <li class="nav-item"><a class="button button-header" href="login.php">Login</a></li>
-            <li class="nav-item"><a class="button button-header" href="register.php">Register</a></li>
-            <!-- <li class="nav-item"><a class="nav-link" href="tracking-order.php">Tracking</a></li> -->
-          </ul>
-
-
-          
-
-          </ul>
-          <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-            <li class="nav-item mt-2 mr-2"><?php
-
-
-            <li class="nav-item"><a class="button button-header" href="index.php?logout">logout</a></li>
-          </ul>
-
-
-          </div>
+			<li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+			</ul>
+			<ul class="nav-shop">
+			<li class="nav-item"><button><i class="ti-search"></i></button></li>
+			<li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+			<li class="nav-item"><a class="button button-header" href="login.html">Login</a></li>
+			<li class="nav-item"><a class="button button-header" href="register.html">Register</a></li>
+			</ul>
+			</div>
         </div>
       </nav>
     </div>
   </header>
   <!--================ End Header Menu Area =================-->
-<!-- ================ end header area ================= -->
-<!-- ================ start banner area ================= -->
-<section class="blog-banner-area" id="category">
-  <div class="container h-100">
-    <div class="blog-banner">
-      <div class="text-center">
-        <h1>Shop Category</h1>
-        <nav aria-label="breadcrumb" class="banner-breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Shop Category</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ================ end banner area ================= -->
 
+  
+<main class="site-main">
 
-<!-- ================ category section start ================= -->
-<section class="section-margin--small mb-5">
-  <div class="container">
-    <div class="row">
-
-
-      <div class="col-xl-3 col-lg-4 col-md-5">
-        <div class="sidebar-categories">
-          <div class="head">Browse Categories</div>
-          <ul class="main-categories">
-            <li class="common-filter">
-              <form>
-                <ul>
-                    <li class="filter-list">
-                      <a target="_self">
-                        <input class="pixel-radio" type="radio" name="categoryName">
-                        <label ><span> categoryName</span></label>
-                      </a>
-                    </li>
-                </ul>
-              </form>
-            </li>
-          </ul>
+  <!--================ Hero banner start =================-->
+  <section class="hero-banner">
+    <div class="container">
+      <div class="row no-gutters align-items-center pt-60px">
+        <div class="col-5 d-none d-sm-block">
+          <div class="hero-banner__img">
+            <img class="img-fluid" src="asstes/img/home/hero-banner.png" alt="">
+          </div>
+        </div>
+        <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+          <div class="hero-banner__content">
+            <h4>Shop is fun</h4>
+            <h1>Browse Our Premium Product</h1>
+            <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p>
+            <a class="button button-hero" href="./products.php">Browse Now</a>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-
-      <div class="col-xl-9 col-lg-8 col-md-7">
-        <!-- Start Filter Bar -->
-        <div class="filter-bar d-flex flex-wrap align-items-center">
-          <div>
-            <div class="input-group filter-bar-search">
-              <form action="search.php">
-              <input type="text" name="search" placeholder="Search">
-              </form>
-              <div class="input-group-append">
-                <button type="button"><i class="ti-search"></i></button>
-              </div>
+  
+  <!--================ Hero Carousel start =================-->
+  <!-- <section class="section-margin mt-0">
+    <div class="container">
+      <div class="section-intro mt-4 pb-60px">
+        <p>Find Popular Categories</p>
+        <h2>All <span class="section-intro__style">Categories</span></h2>
+      </div>
+      <div class="owl-carousel owl-theme hero-carousel">
+        <?php foreach ($categories as $category) {  ?>
+          <div class="card text-center">
+            <div class="card-footer bg-transparent border-primary">
+              <a href="./category-products.php?id=<?php echo $category['id'] ?>" class="btn btn-primary w-100 p-3">Show All <b><?php echo $category['name'] ?></b></a>
             </div>
           </div>
+        <?php } ?>
+
+
+      </div>
+
+    </div>
+
+  </section> -->
+  <!--================ Hero Carousel end =================-->
+
+
+
+  <!-- ================ trending product section start ================= -->
+  <section class="section-margin calc-60px">
+    <div class="container">
+      <div class="section-intro pb-60px">
+        <p>Popular Item in the market</p>
+        <h2>Trending <span class="section-intro__style">Product</span></h2>
+      </div>
+      <div class="row" id="card">
+
+
+
+
+      </div>
+    </div>
+  </section>
+  <!-- ================ trending product section end ================= -->
+
+
+  <!-- ================ offer section start ================= -->
+  <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5">
+          <div class="offer__content text-center">
+            <h3>Up To 50% Off</h3>
+            <h4>Winter Sale</h4>
+            <p>Him she'd let them sixth saw light</p>
+            <a class="button button--active mt-3 mt-xl-4" href="./products.php">Shop Now</a>
+          </div>
         </div>
-        <!-- End Filter Bar -->
-
-       
-        <!-- Start Best Seller -->
-         <!-- 00000000000000000000000000000000000 -->
-        <section class="lattest-product-area pb-40 category-list">
-          <div class="row" id="card">
-             
-                <!-- products -->
-              
-          </div>
-        </section>
-        <!-- 00000000000000000000000000000000000 -->
-        
-        <!-- End Best Seller -->
       </div>
     </div>
-  </div>
-</section>
-<!-- ================ category section end ================= -->
+  </section>
+  <!-- ================ offer section end ================= -->
 
+  <!-- ================ Best Selling item  carousel ================= -->
+  <!-- <section class="section-margin calc-60px">
+    <div class="container">
+      <div class="section-intro pb-60px">
+        <p>Popular Item in the market</p>
+        <h2>Best <span class="section-intro__style">Sellers</span></h2>
+      </div>
+      <div class="owl-carousel owl-theme" id="bestSellerCarousel">
+        <?php
+        foreach ($products as $product) {
+          // card-img
+        ?>
 
-
-
-<!-- ================ Subscribe section start ================= -->
-<section class="subscribe-position">
-  <div class="container">
-    <div class="subscribe text-center">
-      <h3 class="subscribe__title">Get Update From Anywhere</h3>
-      <p>Bearing Void gathering light light his eavening unto dont afraid</p>
-      <div id="mc_embed_signup">
-        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
-          <div class="form-group ml-sm-auto">
-            <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '">
-            <div class="info"></div>
+          <div class="card text-center card-product">
+            <div class="card-product__img">
+              <img class="img-fluid" src="<?php echo $product['image'] ?>" style="width: 300px;height: 300px;object-fit: cover;" alt="<?php echo $product['name'] ?>">
+              <ul class="card-product__imgOverlay">
+                <li>
+                  <form action="single-product.php">
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="id" value="<?php echo $product["id"]; ?>">
+                    <input type="hidden" name="add" value="">
+                    <button><i class="ti-shopping-cart"></i></button>
+                  </form>
+                </li>
+                <li><a href="index.php?pwid=<?php echo $product["id"]; ?>&addtowatchlist"><button><i class="fa-regular fa-bookmark"></i></i></button></a></li>
+                <li><button><a href="index.php?pfid=<?php echo $product["id"]; ?>&addtofav"><i class="ti-heart"></i></a></button></li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <p><?php echo $product['category'] ?></p>
+              <h4 class="card-product__title"><a href="single-product.php?id=<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a></h4>
+              <p class="card-product__price">$<?php echo $product['price'] ?></p>
+            </div>
           </div>
-          <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
-          <div style="position: absolute; left: -5000px;">
-            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-          </div>
-
-        </form>
+        <?php } ?>
       </div>
 
+
+
     </div>
-  </div>
-</section>
-<!-- ================ Subscribe section end ================= -->
+
+  </section> -->
 
 
 
-<!--================ End =================-->
+</main>
 
 
 <!-- footer -->
@@ -223,7 +207,7 @@
             <div class="single-footer-widget tp_widgets">
               <h4 class="footer_title">Quick Links</h4>
               <ul class="list">
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="products.php">Shop</a></li>
                 <li><a href="fav-products.php">Favourites</a></li>
                 <li><a href="watchlist.php">Watch List</a></li>
@@ -292,14 +276,42 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
+
+function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+
+
     function updateTable(){
         $("#card").empty();
 
         var url = "http://localhost:8081/prod"
+        let token = getCookie("token");
+        if(token){
+          console.log(token)
+        }else{
+          showErrorAlert("you must login first")
+        }
         $.ajax({
             url: url,
             type: "GET",
             datatype: "json",
+            "headers": {
+              "Authorization": "Bearer "+token
+            },
             success: function(data){
                 console.log(data)
                 for(i=0 ; i< data.length ; i++){

@@ -1,5 +1,3 @@
-<!-- header -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,75 +26,30 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container" style="min-width: 1220px;">
-          <a class="navbar-brand logo_h" href="index.php">
+          <a class="navbar-brand logo_h" href="index.html">
             <!-- <img src="asstes/img/logo.png" alt=""> -->
             <h3 class="title">E-Shopping</h3>
           </a>
 
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link homebtn" href="index.php">Home</a></li>
+		  <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+			<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+			<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
 
-              
-              
-                  <li class="nav-item"><a class="nav-link" href="admin.php">Admin</a></li>
-            </ul>
-
-            
-
-
-            <li class="nav-item"><a class="nav-link" href="add-product.php">Add Product</a></li>
-            <li class="nav-item"><a class="nav-link" href="manage-products.php">Manage Products</a></li>
-            </ul>
- 
-            
-
-
-            <li class="nav-item"><a class="nav-link" href="products.php">Shop Category</a></li>
-
-            <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">preferences</a>
-              <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="fav-products.php">Favourites</a></li>
-                <li class="nav-item"><a class="nav-link" href="watchlist.php">Watch List</a></li>
-              </ul>
-            </li>
-
-            <li class="nav-item"><a class="nav-link" href="my-orders.php">My Orders</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-              <li class="nav-item"><a href="products.php"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-              <li class="nav-item"><a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
-            </ul>
-
-            
-
-          </ul>
-          <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-            <li class="nav-item"><a class="button button-header" href="login.php">Login</a></li>
-            <li class="nav-item"><a class="button button-header" href="register.php">Register</a></li>
-            <!-- <li class="nav-item"><a class="nav-link" href="tracking-order.php">Tracking</a></li> -->
-          </ul>
-
-
-          
-
-          </ul>
-          <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-            <li class="nav-item mt-2 mr-2"><?php
-
-
-            <li class="nav-item"><a class="button button-header" href="index.php?logout">logout</a></li>
-          </ul>
-
-
-          </div>
+			<li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+			</ul>
+			<ul class="nav-shop">
+			<li class="nav-item"><button><i class="ti-search"></i></button></li>
+			<li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+			<li class="nav-item"><a class="button button-header" href="login.html">Login</a></li>
+			<li class="nav-item"><a class="button button-header" href="register.html">Register</a></li>
+			</ul>
+			</div>
         </div>
       </nav>
     </div>
   </header>
   <!--================ End Header Menu Area =================-->
-<!-- ================ end header area ================= -->
+  <!-- ================ end header area ================= -->
 <section class="blog-banner-area" id="category">
   <div class="container h-100">
     <div class="blog-banner">
@@ -153,7 +106,7 @@
 
         <div class="form-group">
           <label for="inputAddress">description</label>
-          <textarea class="form-control" name="desc" id="desc"></textarea>
+          <textarea class="form-control" name="description" id="description"></textarea>
         </div>
 
 
@@ -176,7 +129,7 @@
 
         <div class="mb-3">
           <label for="formFileMultiple" class="form-label">Add Product Photos</label>
-          <input class="form-control" type="file" name="img" id="formFileMultiple">
+          <input class="form-control" type="file" name="file" id="formFileMultiple">
         </div>
 
 
@@ -210,7 +163,7 @@
             <div class="single-footer-widget tp_widgets">
               <h4 class="footer_title">Quick Links</h4>
               <ul class="list">
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="products.php">Shop</a></li>
                 <li><a href="fav-products.php">Favourites</a></li>
                 <li><a href="watchlist.php">Watch List</a></li>
@@ -281,28 +234,94 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+
+    
+    function showErrorAlert(error) {
+    // Create an alert element
+    var alertDiv = document.createElement('div');
+    alertDiv.className = 'alert alert-danger alert-dismissible fade show';
+    alertDiv.setAttribute('role', 'alert');
+
+    // Add alert content
+    alertDiv.innerHTML = '<strong>Error!</strong> '+error;
+
+    // Add close button
+    var closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'close';
+    closeButton.setAttribute('data-dismiss', 'alert');
+    closeButton.setAttribute('aria-label', 'Close');
+    closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
+    alertDiv.appendChild(closeButton);
+
+    // Insert alert before appending the body
+    document.body.insertBefore(alertDiv, document.body.firstChild);
+}
+
+
+
   $("#prodForm").submit(function(event){
     event.preventDefault();
-    var url = "http://localhost:8081/prod/create"
+    var form = new FormData($(this)[0]);
+    let token = getCookie("token");
+
     $.ajax({
-        url:url,
-        type:"POST",
-        datatype:"json",
-        contentType: "application/json",
-        data:JSON.stringify({
-            name: document.getElementById('name').value,
-            description: document.getElementById('desc').value,
-            quantity: document.getElementById('quan').value,
-            // img: document.getElementById('img').value,
-        }),
-        success:function(data){
-            console.log(data)
-            window.location.href = 'http://localhost:8081/products.html';
-        },
-        error: function(){
-            console.log("error")
-        }
-    })
+      url: "http://127.0.0.1:8081/prod/create",
+      method: "POST",
+      timeout: 0,
+      headers: {
+        Authorization: "Bearer "+token
+      },
+      processData: false,
+      mimeType: "multipart/form-data",
+      contentType: false,
+      data: form,
+      success:function(data){
+        console.log(data)
+        window.location.href = 'http://localhost:8081/products.html';
+      },
+      error: function(){
+        showErrorAlert("you must be admin, but your token is for User")
+        console.log("error")
+      }
+
+    });
+    // $.ajax({
+    //     url:url,
+    //     type:"POST",
+    //     datatype:"json",
+    //     contentType: "application/json",
+    //     data:JSON.stringify({
+    //         name: document.getElementById('name').value,
+    //         description: document.getElementById('desc').value,
+    //         quantity: document.getElementById('quan').value,
+    //         // img: document.getElementById('img').value,
+    //     }),
+    //     success:function(data){
+    //         console.log(data)
+    //         window.location.href = 'http://localhost:8081/products.html';
+    //     },
+    //     error: function(){
+    //         console.log("error")
+    //     }
+    // })
 })
 </script>
 </body>
