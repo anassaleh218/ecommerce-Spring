@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import eshopping.demo.image.ImageService;
 
-import org.springframework.web.bind.annotation.RestController;
+
 
 
 @RestController
@@ -56,12 +56,6 @@ public class prodController {
         int quantity = Integer.parseInt((String) request.get("quantity")); // Parse string to int
         // String img = (String) request.get("img");
         String img = (String) imageService.saveImage(file);
-
-    public String saveProd(@RequestBody Map <String, String> request) {
-        String name = (String) request.get("name");
-        String description = (String) request.get("description");
-        int quantity = Integer.parseInt((String) request.get("quantity")); // Parse string to int
-        String img = (String) request.get("img");
 
 
         Prod prodObj = new Prod(name, description, quantity, img);

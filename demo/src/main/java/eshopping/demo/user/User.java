@@ -1,24 +1,33 @@
 package eshopping.demo.user;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Convert;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.security.core.GrantedAuthority;
-
 import org.springframework.security.core.userdetails.UserDetails;
 
+import eshopping.demo.config.TripleDesEncryptor;
+import eshopping.demo.order.OrderEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -31,16 +40,33 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "Name is required")
+    @NotNull
+    @Convert(converter = TripleDesEncryptor.class)
     private String name;
+
+    @NotBlank(message = "Email is required")
+    @NotNull
+    @Convert(converter = TripleDesEncryptor.class)
     private String email;
+
+    @NotNull
+    @NotBlank(message = "Password is required")
+    // @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<OrderEntity> orders = new HashSet<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       
+
         return role.getAuthorities();
     }
 
@@ -70,7 +96,6 @@ public class User implements UserDetails {
         return true;
     }
 
-
     public User(int id, String name, String email, String password) {
         this.id = id;
         this.name = name;
@@ -83,5 +108,8 @@ public class User implements UserDetails {
         return password;
     }
 
+    public Integer getId() {
+        return id;
+    }
 
 }

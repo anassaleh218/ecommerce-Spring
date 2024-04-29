@@ -1,6 +1,7 @@
 package eshopping.demo.auth;
 import lombok.Data;
 import lombok.Builder;
+
 import eshopping.demo.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import eshopping.demo.config.JwtService;
 import eshopping.demo.user.UserRepository;
+import eshopping.demo.cart.Cart;
+import eshopping.demo.cart.CartRepository;
+
 import lombok.RequiredArgsConstructor;
 
 import eshopping.demo.user.User;
@@ -16,7 +19,8 @@ import eshopping.demo.user.User;
 @RequiredArgsConstructor
 
 public class AuthenticationService {
-    private final UserRepository repository;
+    private final UserRepository userRepository;
+    private final CartRepository cartRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -29,7 +33,14 @@ public class AuthenticationService {
                 .role(request.getRole())
                 .build();
                 
-        repository.save(user);
+        userRepository.save(user);
+
+        var cart = Cart.builder()
+                 .user(user)
+                 .build();
+                 
+        cartRepository.save(cart);
+
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -44,8 +55,10 @@ public class AuthenticationService {
             request.getPassword()
         )
         );
-        var user=repository.findByEmail(request.getEmail())
+        var user=userRepository.findByEmail(request.getEmail())
         .orElseThrow();
+        // var cart=cartRepository.findByuser(user)
+        // .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

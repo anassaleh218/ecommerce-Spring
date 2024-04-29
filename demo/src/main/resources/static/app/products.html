@@ -40,8 +40,8 @@
 			<ul class="nav-shop">
 			<li class="nav-item"><button><i class="ti-search"></i></button></li>
 			<li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-			<li class="nav-item"><a class="button button-header" href="login.html">Login</a></li>
-			<li class="nav-item"><a class="button button-header" href="register.html">Register</a></li>
+      <li id="loginNavItem" class="nav-item"><a id="loginButton" class="button button-header" href="login.html">Login</a></li>
+      <li id="registerNavItem" class="nav-item"><a id="registerButton" class="button button-header" href="register.html">Register</a></li>
 			</ul>
 			</div>
         </div>
@@ -271,6 +271,14 @@ function getCookie(cname) {
       return "";
     }
 
+    function deleteCookie(cookieName) {
+    document.cookie = cookieName + '=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+
+
+
+
+
 
     function showErrorAlert(error) {
     // Create an alert element
@@ -302,6 +310,21 @@ function updateTable(){
         let token = getCookie("token");
         if(token){
           console.log(token)
+          // Delete register button
+          document.getElementById('registerNavItem').style.display = 'none';
+          
+          // Change login button to log out button
+          var loginButton = document.getElementById('loginButton');
+          loginButton.textContent = 'Logout';
+          loginButton.onclick = logout; // Assigning the logout function to the onclick event
+    
+    // logout function deletes token and redirects to login page
+    function logout() {
+        // Code to delete token
+        deleteCookie("token");
+        // Code to redirect to login page
+        // window.location.href = 'login.html';
+    }
         }else{
           showErrorAlert("you must login first")
         }
