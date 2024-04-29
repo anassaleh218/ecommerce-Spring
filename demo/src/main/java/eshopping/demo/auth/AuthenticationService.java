@@ -1,5 +1,12 @@
 package eshopping.demo.auth;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
@@ -8,9 +15,6 @@ import org.springframework.stereotype.Service;
 
 import eshopping.demo.config.JwtService;
 import eshopping.demo.user.UserRepository;
-import eshopping.demo.cart.Cart;
-import eshopping.demo.cart.CartRepository;
-
 import lombok.RequiredArgsConstructor;
 
 import eshopping.demo.user.User;
@@ -19,28 +23,24 @@ import eshopping.demo.user.User;
 @RequiredArgsConstructor
 
 public class AuthenticationService {
-    private final UserRepository userRepository;
-    private final CartRepository cartRepository;
+    private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    Des des = new Des();
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws Exception {
+        
+        String eName = des.encrypt(request.getName());
+        String eEmail = des.encrypt(request.getEmail());
         var user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
+                .name(eName)
+                .email(eEmail)
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
                 
-        userRepository.save(user);
-
-        var cart = Cart.builder()
-                 .user(user)
-                 .build();
-                 
-        cartRepository.save(cart);
-
+        repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -48,17 +48,17 @@ public class AuthenticationService {
 
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception{
+        String eEmail = des.encrypt(request.getEmail());
+        System.out.println(eEmail);
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
-            request.getEmail(),
+            eEmail,
             request.getPassword()
         )
         );
-        var user=userRepository.findByEmail(request.getEmail())
+        var user=repository.findByEmail(eEmail)
         .orElseThrow();
-        // var cart=cartRepository.findByuser(user)
-        // .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
