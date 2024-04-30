@@ -92,9 +92,9 @@ public class prodController {
     // }
 
 
-    @GetMapping("{id}/view")
-    public Prod findProd(@PathVariable Integer id) {
-        return prodService.findProd(id);
-    }
+    // @GetMapping("{id}/view")
+    // public Prod findProd(@PathVariable Integer id) {
+    //     return prodService.findProd(id);
+    // }
     
 }
