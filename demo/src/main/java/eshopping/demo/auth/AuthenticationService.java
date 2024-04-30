@@ -1,12 +1,5 @@
 package eshopping.demo.auth;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
@@ -44,8 +37,8 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .role(request.getRole().name())
                 .build();
-
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception{
@@ -62,6 +55,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .role(user.getRole().name())
                 .build();
     }
 

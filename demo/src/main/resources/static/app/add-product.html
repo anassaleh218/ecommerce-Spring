@@ -1,329 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Aroma Shop - Home</title>
+    <link rel="icon" href="asstes/img/Fevicon.png" type="image/png" />
+    <link rel="stylesheet" href="asstes/vendors/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="asstes/vendors/fontawesome/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="asstes/vendors/themify-icons/themify-icons.css"
+    />
+    <link rel="stylesheet" href="asstes/vendors/nice-select/nice-select.css" />
+    <link
+      rel="stylesheet"
+      href="asstes/vendors/owl-carousel/owl.theme.default.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="asstes/vendors/owl-carousel/owl.carousel.min.css"
+    />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Home</title>
-  <link rel="icon" href="asstes/img/Fevicon.png" type="image/png">
-  <link rel="stylesheet" href="asstes/vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="asstes/vendors/fontawesome/css/all.css">
-  <link rel="stylesheet" href="asstes/vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="asstes/vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="asstes/vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="asstes/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="asstes/css/style.css" />
+    <link rel="stylesheet" href="asstes/css/edits.css" />
+  </head>
 
-  <link rel="stylesheet" href="asstes/css/style.css">
-  <link rel="stylesheet" href="asstes/css/edits.css">
+  <body>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+      <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container" style="min-width: 1220px">
+            <a class="navbar-brand logo_h" href="index.html">
+              <!-- <img src="asstes/img/logo.png" alt=""> -->
+              <h3 class="title">E-Shopping</h3>
+            </a>
 
+            <div
+              class="collapse navbar-collapse offset"
+              id="navbarSupportedContent"
+            >
+              <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
 
-</head>
+                <li class="nav-item">
+                  <a class="nav-link" href="products.html">Products</a>
+                </li>
 
-<body>
-  <!--================ Start Header Menu Area =================-->
-  <header class="header_area">
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container" style="min-width: 1220px;">
-          <a class="navbar-brand logo_h" href="index.html">
-            <!-- <img src="asstes/img/logo.png" alt=""> -->
-            <h3 class="title">E-Shopping</h3>
-          </a>
-
-		  <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-			<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-
-			<li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-			</ul>
-			<ul class="nav-shop">
-			<li class="nav-item"><button><i class="ti-search"></i></button></li>
-			<li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-			<li class="nav-item"><a class="button button-header" href="login.html">Login</a></li>
-			<li class="nav-item"><a class="button button-header" href="register.html">Register</a></li>
-			</ul>
-			</div>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <!--================ End Header Menu Area =================-->
-  <!-- ================ end header area ================= -->
-<section class="blog-banner-area" id="category">
-  <div class="container h-100">
-    <div class="blog-banner">
-      <div class="text-center">
-        <h1>Adding Product</h1>
-        <nav aria-label="breadcrumb" class="banner-breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Seller</li>
-          </ol>
-        </nav>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ================ end banner area ================= -->
-
-
-<!--================Cart Area =================-->
-<section class="cart_area">
-  <div class="container">
-    <div class="col-6 mx-auto">
-
-
-      <form action="http://localhost:8081/products.html" method="post" id="prodForm" enctype="multipart/form-data">
-
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Product Name</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="Name" required>
-          </div>
-        </div>
-
-        <div class="form-row mb-2">
-          <select disabled class="form-select mx-1" name="category" aria-label="Default select example" required>
-            <option value="" selected disabled>Select Category</option>
-              <option value="<?php echo $category["id"] ?>"><?php echo $category["name"] ?></option>
-          </select>
-
-          <select disabled class="form-group form-select mx-1" name="size" aria-label="Default select example">
-            <option value="" selected disabled>Select Size</option>
-            <option value="NULL">No Size</option>
-              <option value=""></option>
-          </select>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-5">
-            <label for="inputEmail4">Product Color</label>
-            <input disabled type="text" name="color" class="form-control" id="inputEmail4" placeholder="Color" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputAddress">description</label>
-          <textarea class="form-control" name="description" id="description"></textarea>
-        </div>
-
-
-        <div class="form-row">
-
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Product Quantity</label>
-            <input type="number" name="quantity" class="form-control" id="quan" required>
-          </div>
-
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Product Price</label>
-            <div class="input-group mb-3">
-              <input disabled type="number" step="0.01" placeholder="0.00" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" required>
-              <span class="input-group-text">$</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="mb-3">
-          <label for="formFileMultiple" class="form-label">Add Product Photos</label>
-          <input class="form-control" type="file" name="file" id="formFileMultiple">
-        </div>
-
-
-        <button type="submit" class="btn btn-primary">Add</button>
-      </form>
-    </div>
-  </div>
-</section>
-<!--================End Cart Area =================-->
-
-<!-- footer -->
-
-  <!--================ Start footer Area  =================-->
-  <footer class="footer">
-    <div class="footer-area">
-      <div class="container">
-        <div class="row section_gap">
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title large_title">Our Mission</h4>
-              <p>
-                So seed seed green that winged cattle in. Gathering thing made fly you're no
-                divided deep moved us lan Gathering thing us land years living.
-              </p>
-              <p>
-                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
-              </p>
-            </div>
-          </div>
-          <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title">Quick Links</h4>
-              <ul class="list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.php">Shop</a></li>
-                <li><a href="fav-products.php">Favourites</a></li>
-                <li><a href="watchlist.php">Watch List</a></li>
+                <li class="nav-item">
+                  <a
+                    id="add"
+                    class="nav-link"
+                    href="add-product.html"
+                    style="display: none"
+                    >Add Product</a
+                  >
+                </li>
+              </ul>
+              <ul class="nav-shop">
+                <li class="nav-item">
+                  <button><i class="ti-search"></i></button>
+                </li>
+                <li class="nav-item">
+                  <button>
+                    <i class="ti-shopping-cart"></i
+                    ><span class="nav-shop__circle">3</span>
+                  </button>
+                </li>
+                <li id="loginNavItem" class="nav-item">
+                  <a
+                    id="loginButton"
+                    class="button button-header"
+                    href="login.html"
+                    >Login</a
+                  >
+                </li>
+                <li id="registerNavItem" class="nav-item">
+                  <a
+                    id="registerButton"
+                    class="button button-header"
+                    href="register.html"
+                    >Register</a
+                  >
+                </li>
               </ul>
             </div>
           </div>
-          <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title">Contact Us</h4>
-              <div class="ml-40">
-                <p class="sm-head">
-                  <span class="fa fa-location-arrow"></span>
-                  Head Office
-                </p>
-                <p>123, Main Street, Your City</p>
+        </nav>
+      </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+    <!-- ================ end header area ================= -->
+    <section class="blog-banner-area" id="category">
+      <div class="container h-100">
+        <div class="blog-banner">
+          <div class="text-center">
+            <h1>Adding Product</h1>
+            <nav aria-label="breadcrumb" class="banner-breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Seller
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================ end banner area ================= -->
 
-                <p class="sm-head">
-                  <span class="fa fa-phone"></span>
-                  Phone Number
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+      <div class="container">
+        <div class="col-6 mx-auto">
+          <form
+            action="http://localhost:8081/products.html"
+            method="post"
+            id="prodForm"
+            enctype="multipart/form-data"
+          >
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Product Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="name"
+                  placeholder="Name"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row mb-2">
+              <select
+                disabled
+                class="form-select mx-1"
+                name="category"
+                aria-label="Default select example"
+                required
+              >
+                <option value="" selected disabled>Select Category</option>
+                <option value="<?php echo $category['id']; ?>">
+                  <?php echo $category['name']; ?>
+                </option>
+              </select>
+
+              <select
+                disabled
+                class="form-group form-select mx-1"
+                name="size"
+                aria-label="Default select example"
+              >
+                <option value="" selected disabled>Select Size</option>
+                <option value="NULL">No Size</option>
+                <option value=""></option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="inputEmail4">Product Color</label>
+                <input
+                  disabled
+                  type="text"
+                  name="color"
+                  class="form-control"
+                  id="inputEmail4"
+                  placeholder="Color"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputAddress">description</label>
+              <textarea
+                class="form-control"
+                name="description"
+                id="description"
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Product Quantity</label>
+                <input
+                  type="number"
+                  name="quantity"
+                  class="form-control"
+                  id="quan"
+                  required
+                />
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Product Price</label>
+                <div class="input-group mb-3">
+                  <input
+                    disabled
+                    type="number"
+                    step="0.01"
+                    placeholder="0.00"
+                    name="price"
+                    class="form-control"
+                    aria-label="Amount (to the nearest dollar)"
+                    required
+                  />
+                  <span class="input-group-text">$</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="formFileMultiple" class="form-label"
+                >Add Product Photos</label
+              >
+              <input
+                class="form-control"
+                type="file"
+                name="file"
+                id="formFileMultiple"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!--================End Cart Area =================-->
+
+    <!-- footer -->
+
+    <!--================ Start footer Area  =================-->
+    <footer class="footer">
+      <div class="footer-area">
+        <div class="container">
+          <div class="row section_gap">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="single-footer-widget tp_widgets">
+                <h4 class="footer_title large_title">Our Mission</h4>
+                <p>
+                  So seed seed green that winged cattle in. Gathering thing made
+                  fly you're no divided deep moved us lan Gathering thing us
+                  land years living.
                 </p>
                 <p>
-                  +123 456 7890 <br>
-                  +123 456 7890
+                  So seed seed green that winged cattle in. Gathering thing made
+                  fly you're no divided deep moved
                 </p>
+              </div>
+            </div>
+            <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+              <div class="single-footer-widget tp_widgets">
+                <h4 class="footer_title">Quick Links</h4>
+                <ul class="list">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="products.php">Shop</a></li>
+                  <li><a href="fav-products.php">Favourites</a></li>
+                  <li><a href="watchlist.php">Watch List</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+              <div class="single-footer-widget tp_widgets">
+                <h4 class="footer_title">Contact Us</h4>
+                <div class="ml-40">
+                  <p class="sm-head">
+                    <span class="fa fa-location-arrow"></span>
+                    Head Office
+                  </p>
+                  <p>123, Main Street, Your City</p>
 
-                <p class="sm-head">
-                  <span class="fa fa-envelope"></span>
-                  Email
-                </p>
-                <p>
-                  free@infoexample.com <br>
-                  www.infoexample.com
-                </p>
+                  <p class="sm-head">
+                    <span class="fa fa-phone"></span>
+                    Phone Number
+                  </p>
+                  <p>
+                    +123 456 7890 <br />
+                    +123 456 7890
+                  </p>
+
+                  <p class="sm-head">
+                    <span class="fa fa-envelope"></span>
+                    Email
+                  </p>
+                  <p>
+                    free@infoexample.com <br />
+                    www.infoexample.com
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="row d-flex">
-          <p class="col-lg-12 footer-text text-center">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>
-              document.write(new Date().getFullYear());
-            </script> All rights reserved | This project is made with <i class="fa fa-heart" aria-hidden="true"></i> 
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row d-flex">
+            <p class="col-lg-12 footer-text text-center">
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved | This project is made with
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <!--================ End footer Area  =================-->
+    </footer>
+    <!--================ End footer Area  =================-->
 
+    <script src="asstes/vendors/jquery/jquery-3.2.1.min.js"></script>
+    <script src="asstes/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="asstes/vendors/skrollr.min.js"></script>
+    <script src="asstes/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="asstes/vendors/nice-select/jquery.nice-select.min.js"></script>
+    <script src="asstes/vendors/jquery.ajaxchimp.min.js"></script>
+    <script src="asstes/vendors/mail-script.js"></script>
+    <script src="asstes/js/main.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <script src="asstes/vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="asstes/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="asstes/vendors/skrollr.min.js"></script>
-  <script src="asstes/vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="asstes/vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="asstes/vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="asstes/vendors/mail-script.js"></script>
-  <script src="asstes/js/main.js"></script>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-
-function getCookie(cname) {
-      let name = cname + "=";
-      let decodedCookie = decodeURIComponent(document.cookie);
-      let ca = decodedCookie.split(';');
-      for(let i = 0; i <ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
+    <script>
+      function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
         }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
-    }
-
-
-    
-    function showErrorAlert(error) {
-    // Create an alert element
-    var alertDiv = document.createElement('div');
-    alertDiv.className = 'alert alert-danger alert-dismissible fade show';
-    alertDiv.setAttribute('role', 'alert');
-
-    // Add alert content
-    alertDiv.innerHTML = '<strong>Error!</strong> '+error;
-
-    // Add close button
-    var closeButton = document.createElement('button');
-    closeButton.type = 'button';
-    closeButton.className = 'close';
-    closeButton.setAttribute('data-dismiss', 'alert');
-    closeButton.setAttribute('aria-label', 'Close');
-    closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
-    alertDiv.appendChild(closeButton);
-
-    // Insert alert before appending the body
-    document.body.insertBefore(alertDiv, document.body.firstChild);
-}
-
-
-
-  $("#prodForm").submit(function(event){
-    event.preventDefault();
-    var form = new FormData($(this)[0]);
-    let token = getCookie("token");
-
-    $.ajax({
-      url: "http://127.0.0.1:8081/prod/create",
-      method: "POST",
-      timeout: 0,
-      headers: {
-        Authorization: "Bearer "+token
-      },
-      processData: false,
-      mimeType: "multipart/form-data",
-      contentType: false,
-      data: form,
-      success:function(data){
-        console.log(data)
-        window.location.href = 'http://localhost:8081/products.html';
-      },
-      error: function(){
-        showErrorAlert("you must be admin, but your token is for User")
-        console.log("error")
+        return "";
       }
 
-    });
-    // $.ajax({
-    //     url:url,
-    //     type:"POST",
-    //     datatype:"json",
-    //     contentType: "application/json",
-    //     data:JSON.stringify({
-    //         name: document.getElementById('name').value,
-    //         description: document.getElementById('desc').value,
-    //         quantity: document.getElementById('quan').value,
-    //         // img: document.getElementById('img').value,
-    //     }),
-    //     success:function(data){
-    //         console.log(data)
-    //         window.location.href = 'http://localhost:8081/products.html';
-    //     },
-    //     error: function(){
-    //         console.log("error")
-    //     }
-    // })
-})
-</script>
-</body>
+      let role = getCookie("role");
+      let token = getCookie("token");
+      if (role == "USER") {
+        window.location.href = "products.html";
+      }
 
+      if (token && role) {
+        console.log(token);
+        console.log(role);
+        if (role == "ADMIN") {
+          document.getElementById("add").style.display = "block";
+        }
+        // Delete register button
+        document.getElementById("registerNavItem").style.display = "none";
+
+        // Change login button to log out button
+        var loginButton = document.getElementById("loginButton");
+        loginButton.textContent = "Logout";
+        loginButton.onclick = logout; // Assigning the logout function to the onclick event
+
+        // logout function deletes token and redirects to login page
+        function logout() {
+          // Code to delete token
+          deleteCookie("token");
+          deleteCookie("role");
+          // Code to redirect to login page
+          // window.location.href = 'login.html';
+        }
+      }
+
+      function showErrorAlert(error) {
+        // Create an alert element
+        var alertDiv = document.createElement("div");
+        alertDiv.className = "alert alert-danger alert-dismissible fade show";
+        alertDiv.setAttribute("role", "alert");
+
+        // Add alert content
+        alertDiv.innerHTML = "<strong>Error!</strong> " + error;
+
+        // Add close button
+        var closeButton = document.createElement("button");
+        closeButton.type = "button";
+        closeButton.className = "close";
+        closeButton.setAttribute("data-dismiss", "alert");
+        closeButton.setAttribute("aria-label", "Close");
+        closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
+        alertDiv.appendChild(closeButton);
+
+        // Insert alert before appending the body
+        document.body.insertBefore(alertDiv, document.body.firstChild);
+      }
+
+      $("#prodForm").submit(function (event) {
+        event.preventDefault();
+        var form = new FormData($(this)[0]);
+        let token = getCookie("token");
+
+        $.ajax({
+          url: "http://127.0.0.1:8081/prod/create",
+          method: "POST",
+          timeout: 0,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          processData: false,
+          mimeType: "multipart/form-data",
+          contentType: false,
+          data: form,
+          success: function (data) {
+            console.log(data);
+            window.location.href = "http://localhost:8081/products.html";
+          },
+          error: function () {
+            showErrorAlert("you must be admin, but your token is for User");
+            console.log("error");
+          },
+        });
+      });
+    </script>
+  </body>
 </html>

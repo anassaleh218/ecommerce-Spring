@@ -1,348 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Aroma Shop - Home</title>
+    <link rel="icon" href="asstes/img/Fevicon.png" type="image/png" />
+    <link rel="stylesheet" href="asstes/vendors/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="asstes/vendors/fontawesome/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="asstes/vendors/themify-icons/themify-icons.css"
+    />
+    <link rel="stylesheet" href="asstes/vendors/nice-select/nice-select.css" />
+    <link
+      rel="stylesheet"
+      href="asstes/vendors/owl-carousel/owl.theme.default.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="asstes/vendors/owl-carousel/owl.carousel.min.css"
+    />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Home</title>
-  <link rel="icon" href="asstes/img/Fevicon.png" type="image/png">
-  <link rel="stylesheet" href="asstes/vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="asstes/vendors/fontawesome/css/all.css">
-  <link rel="stylesheet" href="asstes/vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="asstes/vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="asstes/vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="asstes/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="asstes/css/style.css" />
+    <link rel="stylesheet" href="asstes/css/edits.css" />
+  </head>
 
-  <link rel="stylesheet" href="asstes/css/style.css">
-  <link rel="stylesheet" href="asstes/css/edits.css">
+  <body>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+      <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container" style="min-width: 1220px">
+            <a class="navbar-brand logo_h" href="index.html">
+              <!-- <img src="asstes/img/logo.png" alt=""> -->
+              <h3 class="title">E-Shopping</h3>
+            </a>
 
+            <div
+              class="collapse navbar-collapse offset"
+              id="navbarSupportedContent"
+            >
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
 
-</head>
+              <li class="nav-item">
+                <a class="nav-link" href="products.html">Products</a>
+              </li>
 
-<body>
-  <!--================ Start Header Menu Area =================-->
-  <header class="header_area">
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container" style="min-width: 1220px;">
-          <a class="navbar-brand logo_h" href="index.html">
-            <!-- <img src="asstes/img/logo.png" alt=""> -->
-            <h3 class="title">E-Shopping</h3>
-          </a>
-
-		  <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-			<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-
-			<li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-			</ul>
-			<ul class="nav-shop">
-			<li class="nav-item"><button><i class="ti-search"></i></button></li>
-			<li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-      <li id="loginNavItem" class="nav-item"><a id="loginButton" class="button button-header" href="login.html">Login</a></li>
-      <li id="registerNavItem" class="nav-item"><a id="registerButton" class="button button-header" href="register.html">Register</a></li>
-			</ul>
-			</div>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <!--================ End Header Menu Area =================-->
-<!-- ================ start banner area ================= -->
-<section class="blog-banner-area" id="category">
-  <div class="container h-100">
-    <div class="blog-banner">
-      <div class="text-center">
-        <h1>Shop Category</h1>
-        <nav aria-label="breadcrumb" class="banner-breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Shop Category</li>
-          </ol>
+              <li class="nav-item">
+                <a
+                id="add"
+                class="nav-link"
+                  href="add-product.html"
+                  style="display: none"
+                  >Add Product</a
+                >
+              </li>
+            </ul>
+            <ul class="nav-shop">
+              <li class="nav-item">
+                <button><i class="ti-search"></i></button>
+              </li>
+              <li class="nav-item">
+                <button>
+                  <i class="ti-shopping-cart"></i
+                  ><span class="nav-shop__circle">3</span>
+                </button>
+              </li>
+              <li id="loginNavItem" class="nav-item">
+                <a
+                  id="loginButton"
+                  class="button button-header"
+                  href="login.html"
+                  >Login</a
+                >
+              </li>
+              <li id="registerNavItem" class="nav-item">
+                <a
+                  id="registerButton"
+                  class="button button-header"
+                  href="register.html"
+                  >Register</a
+                >
+              </li>
+            </ul>
+            </div>
+          </div>
         </nav>
       </div>
-    </div>
-  </div>
-</section>
-<!-- ================ end banner area ================= -->
-
-
-<!-- ================ category section start ================= -->
-<section class="section-margin--small mb-5">
-  <div class="container">
-    <div class="row">
-
-
-      <div class="col-xl-3 col-lg-4 col-md-5">
-        <div class="sidebar-categories">
-          <div class="head">Browse Categories</div>
-          <ul class="main-categories">
-            <li class="common-filter">
-              <form>
-                <ul>
-                    <li class="filter-list">
-                      <a target="_self">
-                        <input class="pixel-radio" type="radio" name="categoryName">
-                        <label ><span> categoryName</span></label>
-                      </a>
-                    </li>
-                </ul>
-              </form>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="col-xl-9 col-lg-8 col-md-7">
-        <!-- Start Filter Bar -->
-        <div class="filter-bar d-flex flex-wrap align-items-center">
-          <div>
-            <div class="input-group filter-bar-search">
-              <form action="search.php">
-              <input type="text" name="search" placeholder="Search">
-              </form>
-              <div class="input-group-append">
-                <button type="button"><i class="ti-search"></i></button>
-              </div>
-            </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="category">
+      <div class="container h-100">
+        <div class="blog-banner">
+          <div class="text-center">
+            <h1>Shop Category</h1>
+            <nav aria-label="breadcrumb" class="banner-breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Shop Category
+                </li>
+              </ol>
+            </nav>
           </div>
         </div>
-        <!-- End Filter Bar -->
-
-       
-        <!-- Start Best Seller -->
-         <!-- 00000000000000000000000000000000000 -->
-        <section class="lattest-product-area pb-40 category-list">
-          <div class="row" id="card">
-             
-                <!-- products -->
-              
-          </div>
-        </section>
-        <!-- 00000000000000000000000000000000000 -->
-        
-        <!-- End Best Seller -->
       </div>
-    </div>
-  </div>
-</section>
-<!-- ================ category section end ================= -->
+    </section>
+    <!-- ================ end banner area ================= -->
 
-
-
-
-<!-- ================ Subscribe section start ================= -->
-<section class="subscribe-position">
-  <div class="container">
-    <div class="subscribe text-center">
-      <h3 class="subscribe__title">Get Update From Anywhere</h3>
-      <p>Bearing Void gathering light light his eavening unto dont afraid</p>
-      <div id="mc_embed_signup">
-        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
-          <div class="form-group ml-sm-auto">
-            <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '">
-            <div class="info"></div>
-          </div>
-          <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
-          <div style="position: absolute; left: -5000px;">
-            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-          </div>
-
-        </form>
-      </div>
-
-    </div>
-  </div>
-</section>
-<!-- ================ Subscribe section end ================= -->
-
-
-
-<!--================ End =================-->
-
-
-<!-- footer -->
-  <!--================ Start footer Area  =================-->
-  <footer class="footer">
-    <div class="footer-area">
+    <!-- ================ category section start ================= -->
+    <section class="section-margin--small mb-5">
       <div class="container">
-        <div class="row section_gap">
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title large_title">Our Mission</h4>
-              <p>
-                So seed seed green that winged cattle in. Gathering thing made fly you're no
-                divided deep moved us lan Gathering thing us land years living.
-              </p>
-              <p>
-                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
-              </p>
-            </div>
-          </div>
-          <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title">Quick Links</h4>
-              <ul class="list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.php">Shop</a></li>
-                <li><a href="fav-products.php">Favourites</a></li>
-                <li><a href="watchlist.php">Watch List</a></li>
+        <div class="row">
+          <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-categories">
+              <div class="head">Browse Categories</div>
+              <ul class="main-categories">
+                <li class="common-filter">
+                  <form>
+                    <ul>
+                      <li class="filter-list">
+                        <a target="_self">
+                          <input
+                            class="pixel-radio"
+                            type="radio"
+                            name="categoryName"
+                          />
+                          <label><span> categoryName</span></label>
+                        </a>
+                      </li>
+                    </ul>
+                  </form>
+                </li>
               </ul>
             </div>
           </div>
-          <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title">Contact Us</h4>
-              <div class="ml-40">
-                <p class="sm-head">
-                  <span class="fa fa-location-arrow"></span>
-                  Head Office
-                </p>
-                <p>123, Main Street, Your City</p>
 
-                <p class="sm-head">
-                  <span class="fa fa-phone"></span>
-                  Phone Number
+          <div class="col-xl-9 col-lg-8 col-md-7">
+            <!-- Start Filter Bar -->
+            <div class="filter-bar d-flex flex-wrap align-items-center">
+              <div>
+                <div class="input-group filter-bar-search">
+                  <form action="search.php">
+                    <input type="text" name="search" placeholder="Search" />
+                  </form>
+                  <div class="input-group-append">
+                    <button type="button"><i class="ti-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Filter Bar -->
+
+            <!-- Start Best Seller -->
+            <!-- 00000000000000000000000000000000000 -->
+            <section class="lattest-product-area pb-40 category-list">
+              <div class="row" id="card">
+                <!-- products -->
+              </div>
+            </section>
+            <!-- 00000000000000000000000000000000000 -->
+
+            <!-- End Best Seller -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================ category section end ================= -->
+
+    <!-- ================ Subscribe section start ================= -->
+    <section class="subscribe-position">
+      <div class="container">
+        <div class="subscribe text-center">
+          <h3 class="subscribe__title">Get Update From Anywhere</h3>
+          <p>
+            Bearing Void gathering light light his eavening unto dont afraid
+          </p>
+          <div id="mc_embed_signup">
+            <form
+              target="_blank"
+              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+              method="get"
+              class="subscribe-form form-inline mt-5 pt-1"
+            >
+              <div class="form-group ml-sm-auto">
+                <input
+                  class="form-control mb-1"
+                  type="email"
+                  name="EMAIL"
+                  placeholder="Enter your email"
+                  onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Your Email Address '"
+                />
+                <div class="info"></div>
+              </div>
+              <button
+                class="button button-subscribe mr-auto mb-1"
+                type="submit"
+              >
+                Subscribe Now
+              </button>
+              <div style="position: absolute; left: -5000px">
+                <input
+                  name="b_36c4fd991d266f23781ded980_aefe40901a"
+                  tabindex="-1"
+                  value=""
+                  type="text"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================ Subscribe section end ================= -->
+
+    <!--================ End =================-->
+
+    <!-- footer -->
+    <!--================ Start footer Area  =================-->
+    <footer class="footer">
+      <div class="footer-area">
+        <div class="container">
+          <div class="row section_gap">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="single-footer-widget tp_widgets">
+                <h4 class="footer_title large_title">Our Mission</h4>
+                <p>
+                  So seed seed green that winged cattle in. Gathering thing made
+                  fly you're no divided deep moved us lan Gathering thing us
+                  land years living.
                 </p>
                 <p>
-                  +123 456 7890 <br>
-                  +123 456 7890
+                  So seed seed green that winged cattle in. Gathering thing made
+                  fly you're no divided deep moved
                 </p>
+              </div>
+            </div>
+            <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+              <div class="single-footer-widget tp_widgets">
+                <h4 class="footer_title">Quick Links</h4>
+                <ul class="list">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="products.php">Shop</a></li>
+                  <li><a href="fav-products.php">Favourites</a></li>
+                  <li><a href="watchlist.php">Watch List</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+              <div class="single-footer-widget tp_widgets">
+                <h4 class="footer_title">Contact Us</h4>
+                <div class="ml-40">
+                  <p class="sm-head">
+                    <span class="fa fa-location-arrow"></span>
+                    Head Office
+                  </p>
+                  <p>123, Main Street, Your City</p>
 
-                <p class="sm-head">
-                  <span class="fa fa-envelope"></span>
-                  Email
-                </p>
-                <p>
-                  free@infoexample.com <br>
-                  www.infoexample.com
-                </p>
+                  <p class="sm-head">
+                    <span class="fa fa-phone"></span>
+                    Phone Number
+                  </p>
+                  <p>
+                    +123 456 7890 <br />
+                    +123 456 7890
+                  </p>
+
+                  <p class="sm-head">
+                    <span class="fa fa-envelope"></span>
+                    Email
+                  </p>
+                  <p>
+                    free@infoexample.com <br />
+                    www.infoexample.com
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="row d-flex">
-          <p class="col-lg-12 footer-text text-center">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>
-              document.write(new Date().getFullYear());
-            </script> All rights reserved | This project is made with <i class="fa fa-heart" aria-hidden="true"></i> 
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row d-flex">
+            <p class="col-lg-12 footer-text text-center">
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved | This project is made with
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <!--================ End footer Area  =================-->
-  <script src="asstes/vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="asstes/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="asstes/vendors/skrollr.min.js"></script>
-  <script src="asstes/vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="asstes/vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="asstes/vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="asstes/vendors/mail-script.js"></script>
-  <script src="asstes/js/main.js"></script>
+    </footer>
+    <!--================ End footer Area  =================-->
+    <script src="asstes/vendors/jquery/jquery-3.2.1.min.js"></script>
+    <script src="asstes/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="asstes/vendors/skrollr.min.js"></script>
+    <script src="asstes/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="asstes/vendors/nice-select/jquery.nice-select.min.js"></script>
+    <script src="asstes/vendors/jquery.ajaxchimp.min.js"></script>
+    <script src="asstes/vendors/mail-script.js"></script>
+    <script src="asstes/js/main.js"></script>
 
-  <!-- new -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-
-function getCookie(cname) {
-      let name = cname + "=";
-      let decodedCookie = decodeURIComponent(document.cookie);
-      let ca = decodedCookie.split(';');
-      for(let i = 0; i <ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
+    <!-- new -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
         }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
+        return "";
       }
-      return "";
-    }
 
-    function deleteCookie(cookieName) {
-    document.cookie = cookieName + '=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
+      function deleteCookie(cookieName) {
+        document.cookie =
+          cookieName + "=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      }
 
+      function showErrorAlert(error) {
+        // Create an alert element
+        var alertDiv = document.createElement("div");
+        alertDiv.className = "alert alert-danger alert-dismissible fade show";
+        alertDiv.setAttribute("role", "alert");
 
+        // Add alert content
+        alertDiv.innerHTML = "<strong>Error!</strong> " + error;
 
+        // Add close button
+        var closeButton = document.createElement("button");
+        closeButton.type = "button";
+        closeButton.className = "close";
+        closeButton.setAttribute("data-dismiss", "alert");
+        closeButton.setAttribute("aria-label", "Close");
+        closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
+        alertDiv.appendChild(closeButton);
 
+        // Insert alert before appending the body
+        document.body.insertBefore(alertDiv, document.body.firstChild);
+      }
 
-
-    function showErrorAlert(error) {
-    // Create an alert element
-    var alertDiv = document.createElement('div');
-    alertDiv.className = 'alert alert-danger alert-dismissible fade show';
-    alertDiv.setAttribute('role', 'alert');
-
-    // Add alert content
-    alertDiv.innerHTML = '<strong>Error!</strong> '+error;
-
-    // Add close button
-    var closeButton = document.createElement('button');
-    closeButton.type = 'button';
-    closeButton.className = 'close';
-    closeButton.setAttribute('data-dismiss', 'alert');
-    closeButton.setAttribute('aria-label', 'Close');
-    closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
-    alertDiv.appendChild(closeButton);
-
-    // Insert alert before appending the body
-    document.body.insertBefore(alertDiv, document.body.firstChild);
-}
-
-
-function updateTable(){
+      function updateTable() {
         $("#card").empty();
 
-        var url = "http://localhost:8081/prod"
+        var url = "http://localhost:8081/prod";
         let token = getCookie("token");
-        if(token){
-          console.log(token)
+        let role = getCookie("role");
+        if (token && role) {
+          console.log(token);
+          console.log(role);
+          if (role == "ADMIN") {
+            document.getElementById("add").style.display = "block";
+          }
           // Delete register button
-          document.getElementById('registerNavItem').style.display = 'none';
-          
+          document.getElementById("registerNavItem").style.display = "none";
+
           // Change login button to log out button
-          var loginButton = document.getElementById('loginButton');
-          loginButton.textContent = 'Logout';
+          var loginButton = document.getElementById("loginButton");
+          loginButton.textContent = "Logout";
           loginButton.onclick = logout; // Assigning the logout function to the onclick event
-    
-    // logout function deletes token and redirects to login page
-    function logout() {
-        // Code to delete token
-        deleteCookie("token");
-        // Code to redirect to login page
-        // window.location.href = 'login.html';
-    }
-        }else{
-          showErrorAlert("you must login first")
+
+          // logout function deletes token and redirects to login page
+          function logout() {
+            // Code to delete token
+            deleteCookie("token");
+            deleteCookie("role");
+            // Code to redirect to login page
+            // window.location.href = 'login.html';
+          }
+        } else {
+          showErrorAlert("you must login first");
         }
         $.ajax({
-            url: url,
-            type: "GET",
-            datatype: "json",
-            "headers": {
-              "Authorization": "Bearer "+token
-            },
-            success: function(data){
-                console.log(data)
-                for(i=0 ; i< data.length ; i++){
-                  var cardHtml = `
+          url: url,
+          type: "GET",
+          datatype: "json",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          success: function (data) {
+            console.log(data);
+            for (i = 0; i < data.length; i++) {
+              var cardHtml =
+                `
                   <div class="col-md-6 col-lg-4" >
                 <div class="card text-center card-product">
                     <div class="card-product__img">
-                        <img class="card-img" width="500" src="imgs/`+ data[i].img +`" style="width: 200px;height: 250px;object-fit: cover;" alt="">
+                        <img class="card-img" width="500" src="imgs/` +
+                data[i].img +
+                `" style="width: 200px;height: 250px;object-fit: cover;" alt="">
                         <ul class="card-product__imgOverlay">
                             <li>
                                 <form action="single-product.php">
@@ -357,52 +424,55 @@ function updateTable(){
                         </ul>
                     </div>
                     <div class="card-body">
-                        <p>ID: `+ data[i].id +`</p>
+                        <p>ID: ` +
+                data[i].id +
+                `</p>
                         <h4 class="card-product__title">
-                          Name: `+ data[i].name +`
+                          Name: ` +
+                data[i].name +
+                `
                         </h4>
-                        <p>Quantity: `+ data[i].quantity +`</p>
-                        <p>Desc: `+ data[i].description +`</p>
+                        <p>Quantity: ` +
+                data[i].quantity +
+                `</p>
+                        <p>Desc: ` +
+                data[i].description +
+                `</p>
                     </div>
                 </div>
                 </div>
             `;
-            $("#card").append(cardHtml);
-          
-            };
-          },
-            error: function(){
-                console.log('error happened')
+              $("#card").append(cardHtml);
             }
-        })
+          },
+          error: function () {
+            console.log("error happened");
+          },
+        });
+      }
+      updateTable();
 
-
-    }
-     updateTable()
-
-    // $("#topicForm").submit(function(event){
-    //     event.preventDefault();
-    //     var url = "http://localhost:8080/topic/create"
-    //     $.ajax({
-    //         url:url,
-    //         type:"POST",
-    //         datatype:"json",
-    //         contentType: "application/json",
-    //         data:JSON.stringify({
-    //             name: document.getElementById('name').value,
-    //             description: document.getElementById('desc').value,
-    //         }),
-    //         success:function(data){
-    //             console.log(data)
-    //             updateTable()
-    //         },
-    //         error: function(){
-    //             console.log("error")
-    //         }
-    //     })
-    // })
-</script>
-
-</body>
-
+      // $("#topicForm").submit(function(event){
+      //     event.preventDefault();
+      //     var url = "http://localhost:8080/topic/create"
+      //     $.ajax({
+      //         url:url,
+      //         type:"POST",
+      //         datatype:"json",
+      //         contentType: "application/json",
+      //         data:JSON.stringify({
+      //             name: document.getElementById('name').value,
+      //             description: document.getElementById('desc').value,
+      //         }),
+      //         success:function(data){
+      //             console.log(data)
+      //             updateTable()
+      //         },
+      //         error: function(){
+      //             console.log("error")
+      //         }
+      //     })
+      // })
+    </script>
+  </body>
 </html>

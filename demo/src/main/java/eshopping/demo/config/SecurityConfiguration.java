@@ -61,9 +61,7 @@ public class SecurityConfiguration {
                 req.requestMatchers(WHITE_LIST_URL)
                         .permitAll()
                         .requestMatchers("/api/v1/demo").hasAnyRole(ADMIN.name())
-
                         .requestMatchers("/prod/create").hasAnyRole(ADMIN.name())
-
                         .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), USER.name())
                         .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), USER_READ.name())
                         .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), USER_CREATE.name())
