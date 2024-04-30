@@ -3,9 +3,8 @@ package eshopping.demo.product;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Convert;
 
-import eshopping.demo.config.TripleDesEncryptor;
+import eshopping.demo.cart.CartProduct;
 import eshopping.demo.order.OrderProduct;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,7 +14,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "product")
 
@@ -23,14 +26,12 @@ public class Prod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Convert(converter = TripleDesEncryptor.class)
     private String name;
-    @Convert(converter = TripleDesEncryptor.class)
     private String description;
-    @Convert(converter = TripleDesEncryptor.class)
     private int quantity;
-    @Convert(converter = TripleDesEncryptor.class)
     private String img;
+
+    private float price;
 
     @Enumerated(EnumType.STRING)
     private Category category;
@@ -38,75 +39,38 @@ public class Prod {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    // @ManyToMany(mappedBy = "products")
-    // private Set<Order> orders = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private Color color;
+
+    @Enumerated(EnumType.STRING)
+    private Size size;
+
 
     @OneToMany(mappedBy = "product")
     private Set<OrderProduct> orderProducts = new HashSet<>();
+    
+    @OneToMany(mappedBy = "cartProduct")
+    private Set<CartProduct> cartProducts = new HashSet<>();
 
 
-    // private enum Status {
-    // available, outofstock
-    // };
+    
 
-    // private enum Color {
-    // red, green, blue
-    // };
 
-    // public Status getStat() {
-    // return stat;
-    // }
-    // public void setStat(Status stat) {
-    // this.stat = stat;
-    // }
 
-    // public Color getRgb() {
-    // return rgb;
-    // }
-    // public void setRgb(Color rgb) {
-    // this.rgb = rgb;
-    // }
-
-    // public Prod(int id, String name, String description, int quantity, String
-    // img, Status stat, Color rgb) {
-    // this.id = id;
-    // this.name = name;
-    // this.description = description;
-    // this.quantity = quantity;
-    // this.img = img;
-    // this.stat = stat;
-    // this.rgb = rgb;
-    // }
-
-    // public Prod(String name, String description, int quantity, String img, Status
-    // stat, Color rgb) {
-    // this.name = name;
-    // this.description = description;
-    // this.quantity = quantity;
-    // this.img = img;
-    // this.stat = stat;
-    // this.rgb = rgb;
-    // }
-
-    // Default constructor
-    public Prod() {
-    }
-
-    public Prod(String name, String description, int quantity, String img) {
+    public Prod(String name, String description, int quantity, String img, float price, Category category,
+            Status status, Color color, Size size) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.img = img;
+        this.price = price;
+        this.category = category;
+        this.status = status;
+        this.color = color;
+        this.size = size;
     }
 
-    public Prod(int id, String name, String description, int quantity, String img) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.quantity = quantity;
-        this.img = img;
-
-    }
+    
 
     public int getId() {
         return id;
@@ -147,5 +111,31 @@ public class Prod {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+
 
 }

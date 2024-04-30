@@ -4,13 +4,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Convert;
-import javax.validation.constraints.NotBlank;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import eshopping.demo.config.TripleDesEncryptor;
+
 import eshopping.demo.order.OrderEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -41,19 +38,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Name is required")
+
     @NotNull
-    @Convert(converter = TripleDesEncryptor.class)
+
     private String name;
 
-    @NotBlank(message = "Email is required")
+
     @NotNull
-    @Convert(converter = TripleDesEncryptor.class)
     private String email;
 
     @NotNull
-    @NotBlank(message = "Password is required")
-    // @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)

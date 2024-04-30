@@ -1,6 +1,9 @@
 package eshopping.demo.cart;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import eshopping.demo.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,4 +26,7 @@ public class Cart {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
+
+    @OneToMany(mappedBy = "cart")
+    private Set<CartProduct> cartProducts = new HashSet<>();
 }

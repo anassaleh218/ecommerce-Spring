@@ -1,5 +1,5 @@
 package eshopping.demo.product;
 
 public enum Status {
-    available, outofstock
+    Available, OutOfStock
 }
