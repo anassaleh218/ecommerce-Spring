@@ -29,6 +29,7 @@ public class JwtService {
         final Claims claims = extracatAllClaims(token);
         return claimsResolver.apply(claims);
     }
+    
 // different from video
     public boolean isTokenValid (String token,UserDetails userDetails){
         final String username = userDetails.getUsername();

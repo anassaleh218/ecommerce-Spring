@@ -51,39 +51,45 @@ public class prodController {
 
     public String saveProd(@RequestParam("file") MultipartFile file, @RequestParam Map<String, String> request) throws IOException {
     // public String saveProd(@RequestPart("data") Map<String, String> request, @RequestPart("file") MultipartFile file) throws IOException {
-            String name = (String) request.get("name");
+        String name = (String) request.get("name");
         String description = (String) request.get("description");
         int quantity = Integer.parseInt((String) request.get("quantity")); // Parse string to int
         // String img = (String) request.get("img");
         String img = (String) imageService.saveImage(file);
+        
+        Category category = Category.valueOf((String) request.get("category"));
+        Color color =Color.valueOf((String) request.get("color")) ;
+        float price = Float.parseFloat((String) request.get("price"));
+        Size size = Size.valueOf((String) request.get("size"));
+        Status status =Status.valueOf("Available");
 
 
-        Prod prodObj = new Prod(name, description, quantity, img);
+        Prod prodObj = new Prod(name, description, quantity, img, price, category, status, color, size);
         // Prod prodObj = new Prod( request.get("name"), request.get("description"), request.get("quantity"), request.get("img"));
         prodService.addProd(prodObj);
         return "done,prod saved successfully";
     }
 
-    @PutMapping("/{id}/update") 
-    //localhost:8080/prod/2/update
-    public Prod updateTopic(@PathVariable Integer id, @RequestBody Map <String, String> request) {
-        String name = (String) request.get("name");
-        String description = (String) request.get("description");
-        int quantity = Integer.parseInt((String) request.get("quantity")); // Parse string to int
-        String img = (String) request.get("img");
+    // @PutMapping("/{id}/update") 
+    // //localhost:8080/prod/2/update
+    // public Prod updateTopic(@PathVariable Integer id, @RequestBody Map <String, String> request) {
+    //     String name = (String) request.get("name");
+    //     String description = (String) request.get("description");
+    //     int quantity = Integer.parseInt((String) request.get("quantity")); // Parse string to int
+    //     String img = (String) request.get("img");
 
-        Prod prodObj = new Prod(id,name, description, quantity, img);
-        // Prod topicObj = new Prod( id, request.get("name"), request.get("description"));
-        Prod result = prodService.updateProd(prodObj);
-        return result;
-    }
+    //     Prod prodObj = new Prod(id,name, description, quantity, img);
+    //     // Prod topicObj = new Prod( id, request.get("name"), request.get("description"));
+    //     Prod result = prodService.updateProd(prodObj);
+    //     return result;
+    // }
 
 
-    @DeleteMapping("{id}/delete")
-    public String deleteProd(@PathVariable Integer id){
-        prodService.deleteProd(id);
-        return "Deleted successfully";
-    }
+    // @DeleteMapping("{id}/delete")
+    // public String deleteProd(@PathVariable Integer id){
+    //     prodService.deleteProd(id);
+    //     return "Deleted successfully";
+    // }
 
 
     @GetMapping("{id}/view")

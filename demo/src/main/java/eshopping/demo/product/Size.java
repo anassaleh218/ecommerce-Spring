@@ -1,5 +1,5 @@
 package eshopping.demo.product;
 
 public enum Size {
-S,M,L
+    NoSize, S, M, L
 }
