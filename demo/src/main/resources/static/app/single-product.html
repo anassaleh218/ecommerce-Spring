@@ -98,12 +98,12 @@
       <div class="container h-100">
         <div class="blog-banner">
           <div class="text-center">
-            <h1>Shop Category</h1>
+            <h1>product</h1>
             <nav aria-label="breadcrumb" class="banner-breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  Shop Category
+                  product
                 </li>
               </ol>
             </nav>
@@ -113,114 +113,12 @@
     </section>
     <!-- ================ end banner area ================= -->
 
-    <!-- ================ category section start ================= -->
-    <section class="section-margin--small mb-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-3 col-lg-4 col-md-5">
-            <div class="sidebar-categories">
-              <div class="head">Browse Categories</div>
-              <ul class="main-categories">
-                <li class="common-filter">
-                  <form>
-                    <ul>
-                      <li class="filter-list">
-                        <a target="_self">
-                          <input
-                            class="pixel-radio"
-                            type="radio"
-                            name="categoryName"
-                          />
-                          <label><span> categoryName</span></label>
-                        </a>
-                      </li>
-                    </ul>
-                  </form>
-                </li>
-              </ul>
-            </div>
-          </div>
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+      <div class="container my-3" id="card"></div>
+    </div>
+    <!--================End Single Product Area =================-->
 
-          <div class="col-xl-9 col-lg-8 col-md-7">
-            <!-- Start Filter Bar -->
-            <div class="filter-bar d-flex flex-wrap align-items-center">
-              <div>
-                <div class="input-group filter-bar-search">
-                  <form action="search.php">
-                    <input type="text" name="search" placeholder="Search" />
-                  </form>
-                  <div class="input-group-append">
-                    <button type="button"><i class="ti-search"></i></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Filter Bar -->
-
-            <!-- Start Best Seller -->
-            <!-- 00000000000000000000000000000000000 -->
-            <section class="lattest-product-area pb-40 category-list">
-              <div class="row" id="card">
-                <!-- products -->
-              </div>
-            </section>
-            <!-- 00000000000000000000000000000000000 -->
-
-            <!-- End Best Seller -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ================ category section end ================= -->
-
-    <!-- ================ Subscribe section start ================= -->
-    <section class="subscribe-position">
-      <div class="container">
-        <div class="subscribe text-center">
-          <h3 class="subscribe__title">Get Update From Anywhere</h3>
-          <p>
-            Bearing Void gathering light light his eavening unto dont afraid
-          </p>
-          <div id="mc_embed_signup">
-            <form
-              target="_blank"
-              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-              method="get"
-              class="subscribe-form form-inline mt-5 pt-1"
-            >
-              <div class="form-group ml-sm-auto">
-                <input
-                  class="form-control mb-1"
-                  type="email"
-                  name="EMAIL"
-                  placeholder="Enter your email"
-                  onfocus="this.placeholder = ''"
-                  onblur="this.placeholder = 'Your Email Address '"
-                />
-                <div class="info"></div>
-              </div>
-              <button
-                class="button button-subscribe mr-auto mb-1"
-                type="submit"
-              >
-                Subscribe Now
-              </button>
-              <div style="position: absolute; left: -5000px">
-                <input
-                  name="b_36c4fd991d266f23781ded980_aefe40901a"
-                  tabindex="-1"
-                  value=""
-                  type="text"
-                />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ================ Subscribe section end ================= -->
-
-    <!--================ End =================-->
 
     <!-- footer -->
     <!--================ Start footer Area  =================-->
@@ -361,10 +259,13 @@
         document.body.insertBefore(alertDiv, document.body.firstChild);
       }
 
+      const urlParams = new URLSearchParams(window.location.search);
+      const prodValue = urlParams.get("prod");
+
       function updateTable() {
         $("#card").empty();
 
-        var url = "http://localhost:8081/prod";
+        var url = "http://127.0.0.1:8081/prod/" + prodValue + "/view";
         let token = getCookie("token");
         let role = getCookie("role");
         if (token && role) {
@@ -396,54 +297,44 @@
           url: url,
           type: "GET",
           datatype: "json",
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+          // headers: {
+          //   Authorization: "Bearer " + token,
+          // },
           success: function (data) {
             console.log(data);
-            for (i = 0; i < data.length; i++) {
-              var cardHtml =
-                `
-                  <div class="col-md-6 col-lg-4" >
-                <div class="card text-center card-product">
-                    <div class="card-product__img">
-                        <img class="card-img" width="500" src="imgs/` +
-                data[i].img +
-                `" style="width: 200px;height: 250px;object-fit: cover;" alt="">
-                        <ul class="card-product__imgOverlay">
-                            <li>
-                                <form action="single-product.php">
-                                    <input type="hidden" name="quantity" value="1">
-                                    <input type="hidden" name="id" value="">
-                                    <input type="hidden" name="add" value="">
-                                    <button><i class="ti-shopping-cart"></i></button>
-                                </form>
-                            </li>
-                            <li><a href=""><button><i class="fa-regular fa-bookmark"></i></button></a></li>
-                            <li><button><a href=""><i class="ti-heart"></i></a></button></li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <p>ID: ` +
-                data[i].id +
-                `</p>
-                <h4 class="card-product__title"><a href="http://127.0.0.1:8081/app/single-product.html?prod=${data[i].id}">
-                          Name: ` +
-                data[i].name +
-                `
-              </a></h4>
-                        <p>Quantity: ` +
-                data[i].quantity +
-                `</p>
-                        <p>Desc: ` +
-                data[i].description +
-                `</p>
-                    </div>
-                </div>
-                </div>
-            `;
-              $("#card").append(cardHtml);
-            }
+            var cardHtml = `<div class="row s_product_inner">
+			<div class="col-lg-6">
+						<img class="img-fluid" src="imgs/${data["img"]}" alt="">
+			</div>
+			<div class="col-lg-5 offset-lg-1">
+				<div class="s_product_text">
+					<h3>${data["name"]}</h3>
+					<h2>$${data["price"]}</h2>
+					<ul class="list">
+						<li><span>category</span> : ${data["category"]}</li>
+						<li><span>Color</span> : ${data["color"]}</li>
+
+						<?php if($product["size"]!= null){?>
+							<li><span>Size</span> : ${data["size"]}</li>
+						<?php }?>
+
+						<li><span>Availibility</span> ${data["status"]}</li>
+					</ul>
+
+					<p>description: ${data["description"]}</p>
+					<div>
+						<label for="qty">Quantity:</label>
+						<form action="single-product.php">
+							<input type="number" name="quantity" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+							<input type="hidden" name="id" value=""">
+							<input type="hidden" name="add" value="">
+							<button class="button primary-btn d-block mt-5">Add to Cart</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>`;
+            $("#card").append(cardHtml);
           },
           error: function () {
             console.log("error happened");
@@ -451,28 +342,6 @@
         });
       }
       updateTable();
-
-      // $("#topicForm").submit(function(event){
-      //     event.preventDefault();
-      //     var url = "http://localhost:8080/topic/create"
-      //     $.ajax({
-      //         url:url,
-      //         type:"POST",
-      //         datatype:"json",
-      //         contentType: "application/json",
-      //         data:JSON.stringify({
-      //             name: document.getElementById('name').value,
-      //             description: document.getElementById('desc').value,
-      //         }),
-      //         success:function(data){
-      //             console.log(data)
-      //             updateTable()
-      //         },
-      //         error: function(){
-      //             console.log("error")
-      //         }
-      //     })
-      // })
     </script>
   </body>
 </html>

@@ -14,9 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ImageService {
 // Andrew
-    // private String uploadDir = "D:/DEV/Spring/ecommerce-Spring-main/ecommerce-Spring-main/demo/src/main/resources/static/app/imgs";
+    // private String uploadDir = "D:\\DEV\\ecommerce-Spring\\demo\\src\\main\\resources\\static\\app\\imgs";
 // Anas
-private String uploadDir = "D:\\Studying\\FCAI\\Level 3\\2nd Semester\\Software Engineering-2\\Project\\demo\\src\\main\\resources\\static\\app\\imgs";
+    private String uploadDir = "D:\\Studying\\FCAI\\Level 3\\2nd Semester\\Software Engineering-2\\Project\\demo\\src\\main\\resources\\static\\app\\imgs";
 
     public String saveImage(MultipartFile file) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
