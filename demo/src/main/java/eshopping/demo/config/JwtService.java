@@ -9,6 +9,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import eshopping.demo.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -26,42 +27,45 @@ public class JwtService {
     }
 
     public <T> T extracatClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extracatAllClaims(token);
+        final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
-    
-// different from video
-    public boolean isTokenValid (String token,UserDetails userDetails){
+
+    public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = userDetails.getUsername();
         return (username.equals(extractUsername(token)) && !isTokenExpired(token));
     }
 
-    private boolean isTokenExpired (String token){
+    private boolean isTokenExpired(String token) {
         return extracatExpiration(token).before(new Date());
     }
 
-    public String generateToken(UserDetails userDetails){
-                return generateToken(new HashMap<>(),userDetails);
-            }
-
+    public String generateToken(UserDetails userDetails) {
+        return generateToken(new HashMap<>(), userDetails);
+    }
 
     public String generateToken(
-            Map<String,Object> extraClaims,
-            UserDetails userDetails    
-            ){
-                return Jwts
+            Map<String, Object> extraClaims,
+            UserDetails userDetails) {
+        // Cast UserDetails to User to access user's id and role
+        User user = (User) userDetails;
+
+        // Include user ID and role in claims
+        extraClaims.put("user_id", user.getId());
+        extraClaims.put("role", user.getRole().toString());
+
+        return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
-                .signWith(getSignInKey(),SignatureAlgorithm.HS256)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
 
-            }
+    }
 
-
-    private Claims extracatAllClaims(String token) {
+    private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
                 .setSigningKey(getSignInKey())
@@ -79,6 +83,9 @@ public class JwtService {
         return extracatClaim(token, Claims::getExpiration);
     }
 
-
+    public Integer extractUserId(String token) {
+        Claims claims = extractAllClaims(token);
+        return (Integer) claims.get("user_id");
+    }
 
 }

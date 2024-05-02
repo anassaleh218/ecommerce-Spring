@@ -3,8 +3,7 @@ package eshopping.demo.product;
 import java.util.HashSet;
 import java.util.Set;
 
-
-import eshopping.demo.cart.CartProduct;
+import eshopping.demo.CartProduct.CartProduct;
 import eshopping.demo.order.OrderProduct;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -131,6 +130,18 @@ public class Prod {
     public Status getStatus() {
         return status;
     }
+
+    public Color getColor() {
+        return color;
+    }
+
+
+
+    public Size getSize() {
+        return size;
+    }
+
+
 
     public void setStatus(Status status) {
         this.status = status;

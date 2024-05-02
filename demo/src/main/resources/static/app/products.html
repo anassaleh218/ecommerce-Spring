@@ -334,10 +334,14 @@
         return "";
       }
 
+      let token = getCookie("token");
+      let role = getCookie("role");
+
       function deleteCookie(cookieName) {
         document.cookie =
           cookieName + "=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
       }
+
 
       function showErrorAlert(error) {
         // Create an alert element
@@ -361,12 +365,11 @@
         document.body.insertBefore(alertDiv, document.body.firstChild);
       }
 
+
       function updateTable() {
         $("#card").empty();
-
         var url = "http://localhost:8081/prod";
-        let token = getCookie("token");
-        let role = getCookie("role");
+
         if (token && role) {
           console.log(token);
           console.log(role);
@@ -392,6 +395,7 @@
         } else {
           showErrorAlert("you must login first");
         }
+
         $.ajax({
           url: url,
           type: "GET",
@@ -412,10 +416,9 @@
                 `" style="width: 200px;height: 250px;object-fit: cover;" alt="">
                         <ul class="card-product__imgOverlay">
                             <li>
-                                <form action="single-product.php">
+                                <form class="addtocart" method="post">
                                     <input type="hidden" name="quantity" value="1">
-                                    <input type="hidden" name="id" value="">
-                                    <input type="hidden" name="add" value="">
+                                    <input type="hidden" name="productId" value="`+data[i].id+`">
                                     <button><i class="ti-shopping-cart"></i></button>
                                 </form>
                             </li>
@@ -452,27 +455,44 @@
       }
       updateTable();
 
-      // $("#topicForm").submit(function(event){
-      //     event.preventDefault();
-      //     var url = "http://localhost:8080/topic/create"
-      //     $.ajax({
-      //         url:url,
-      //         type:"POST",
-      //         datatype:"json",
-      //         contentType: "application/json",
-      //         data:JSON.stringify({
-      //             name: document.getElementById('name').value,
-      //             description: document.getElementById('desc').value,
-      //         }),
-      //         success:function(data){
-      //             console.log(data)
-      //             updateTable()
-      //         },
-      //         error: function(){
-      //             console.log("error")
-      //         }
-      //     })
-      // })
+
+
+
+
+
+
+      
+
+// Use event delegation to handle form submission
+$(document).on("submit", ".addtocart", function(event){
+    event.preventDefault();
+    var url = "http://127.0.0.1:8081/cart/add";
+    var formData = $(this).serializeArray();
+    var data = {};
+    // Convert form data array to JSON object
+    formData.forEach(function(item) {
+        data[item.name] = item.value;
+    });
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+        contentType: "application/json",
+        data: JSON.stringify(data), // Serialize data as JSON string
+        success: function(data){
+            console.log(data);
+            updateTable();
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+});
+      
     </script>
   </body>
 </html>

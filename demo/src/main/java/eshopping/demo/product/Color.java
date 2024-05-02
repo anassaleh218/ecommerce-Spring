@@ -1,5 +1,5 @@
 package eshopping.demo.product;
 
 public enum Color {
-    Red, Green, Blue
+    NoColor,Red, Green, Blue
 }

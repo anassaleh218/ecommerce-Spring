@@ -4,6 +4,7 @@ package eshopping.demo.cart;
 import java.util.HashSet;
 import java.util.Set;
 
+import eshopping.demo.CartProduct.CartProduct;
 import eshopping.demo.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,4 +30,8 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart")
     private Set<CartProduct> cartProducts = new HashSet<>();
+
+    public int getId() {
+        return id;
+    }
 }

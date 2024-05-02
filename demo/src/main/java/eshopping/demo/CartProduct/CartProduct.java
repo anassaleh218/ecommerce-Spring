@@ -1,7 +1,8 @@
-package eshopping.demo.cart;
+package eshopping.demo.CartProduct;
 
 
 
+import eshopping.demo.cart.Cart;
 import eshopping.demo.product.Prod;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -25,6 +25,7 @@ public class SecurityConfiguration {
             "/app/**",
             "/prod/",
             "/prod/*/view",
+            "/cart/**"
     };
 
     private final JwtAuthenticationFilter jwtAuthFilter;
