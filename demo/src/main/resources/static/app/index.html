@@ -388,9 +388,9 @@
           url: url,
           type: "GET",
           datatype: "json",
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+          // headers: {
+          //   Authorization: "Bearer " + token,
+          // },
           success: function (data) {
             console.log(data);
             for (i = 0; i < data.length; i++) {

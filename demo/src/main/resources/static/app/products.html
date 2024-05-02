@@ -123,17 +123,8 @@
               <ul class="main-categories">
                 <li class="common-filter">
                   <form>
-                    <ul>
-                      <li class="filter-list">
-                        <a target="_self">
-                          <input
-                            class="pixel-radio"
-                            type="radio"
-                            name="categoryName"
-                          />
-                          <label><span> categoryName</span></label>
-                        </a>
-                      </li>
+                    <ul id="cat">
+
                     </ul>
                   </form>
                 </li>
@@ -318,6 +309,22 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+      $.ajax({
+        url: "http://127.0.0.1:8081/prod/categories",
+        method: "GET",
+        timeout: 0,
+      }).done(function (data) {
+        console.log(data);
+        for (i = 0; i < data.length; i++) {
+              var cardHtml = `<li class="filter-list">
+                        <a href="?category=${data[i]}">
+                          <span> ${data[i]}</span></label>
+                        </a>
+                      </li>`;
+              $("#cat").append(cardHtml);
+            }
+      });
+
       function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -364,7 +371,6 @@
       function updateTable() {
         $("#card").empty();
 
-        var url = "http://localhost:8081/prod";
         let token = getCookie("token");
         let role = getCookie("role");
         if (token && role) {
@@ -392,13 +398,20 @@
         } else {
           showErrorAlert("you must login first");
         }
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get("category");
+        if (category) {
+          var url = "http://127.0.0.1:8081/prod/category/" + category;
+        } else {
+          var url = "http://localhost:8081/prod";
+        }
         $.ajax({
           url: url,
           type: "GET",
           datatype: "json",
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+          // headers: {
+          //   Authorization: "Bearer " + token,
+          // },
           success: function (data) {
             console.log(data);
             for (i = 0; i < data.length; i++) {
