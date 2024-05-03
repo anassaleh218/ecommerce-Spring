@@ -96,5 +96,15 @@ public class prodController {
     public Prod findProd(@PathVariable Integer id) {
         return prodService.findProd(id);
     }
+
+    @GetMapping("categories")
+    public Category[] categories() {
+        return Category.values();
+    }
+
+    @GetMapping("category/{name}")
+    public List<Prod> getByCategories(@PathVariable String name) {
+        return prodService.findByCategory(Category.valueOf(name));
+    }
     
 }

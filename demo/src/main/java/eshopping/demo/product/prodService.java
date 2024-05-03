@@ -43,4 +43,10 @@ public class prodService {
         return result.orElse(null);
     }
 
+    public List <Prod> findByCategory(Category category){
+        List<Prod> result = new ArrayList<Prod>();
+        prod.findByCategory(category).forEach(result::add);   //method reference
+        return result; 
+    }
+
 }

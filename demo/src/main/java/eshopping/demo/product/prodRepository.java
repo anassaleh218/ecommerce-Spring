@@ -3,11 +3,12 @@ package eshopping.demo.product;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
 
 public interface prodRepository extends CrudRepository <Prod,Integer> {
- 
-    
 
+    List<Prod> findByCategory(Category category);
     
     default String findAttributesById(int id) {
         Optional<Prod> optionalEntity = findById(id);
@@ -20,6 +21,7 @@ public interface prodRepository extends CrudRepository <Prod,Integer> {
             return "Entity not found";
         }
     }
+    
 }
 
 
