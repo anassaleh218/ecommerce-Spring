@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import eshopping.demo.cart.Cart;
-import eshopping.demo.cart.cartRepository;
+import eshopping.demo.cart.CartRepository;
 import eshopping.demo.config.JwtService;
 import eshopping.demo.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import eshopping.demo.user.User;
 
 public class AuthenticationService {
     private final UserRepository userRepository;
-    private final cartRepository cartRepository;
+    private final CartRepository cartRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;

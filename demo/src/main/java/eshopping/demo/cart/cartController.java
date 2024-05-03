@@ -5,25 +5,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import eshopping.demo.CartProduct.CartProduct;
-import eshopping.demo.product.Color;
 import eshopping.demo.product.Prod;
 import eshopping.demo.product.prodRepository;
-import io.jsonwebtoken.Claims;
 import eshopping.demo.CartProduct.CartProductRepository;
-
 import eshopping.demo.config.JwtService;
 
-import eshopping.demo.user.UserRepository;
 
 
 
@@ -36,11 +30,10 @@ public class cartController {
     private prodRepository prodRepository;
 
     @Autowired
-    private cartRepository cartRepository;
+    private CartRepository cartRepository;
 
     @Autowired
     private CartProductRepository cartProductRepository;
-
 
 
     private final JwtService jwtService;
@@ -57,8 +50,6 @@ public class cartController {
 
         final String jwt = authHeader.substring(7);
         final Integer userId = jwtService.extractUserId(jwt);
-        
-        // @RequestParam Integer productId, @RequestParam int quantity,
 
         Integer productId=Integer.valueOf((String) request.get("productId")) ;
         Integer quantity=Integer.valueOf((String) request.get("quantity")) ;
