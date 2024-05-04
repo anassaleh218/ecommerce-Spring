@@ -6,6 +6,7 @@ import eshopping.demo.CartProduct.CartProduct;
 import eshopping.demo.CartProduct.CartProductRepository;
 import eshopping.demo.OrderProduct.OrderProduct;
 import eshopping.demo.OrderProduct.OrderProductRepository;
+import eshopping.demo.auth.AuthenticationResponse;
 import eshopping.demo.cart.Cart;
 import eshopping.demo.cart.CartRepository;
 import eshopping.demo.config.JwtService;
@@ -32,6 +33,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @AllArgsConstructor
 @RestController
@@ -119,7 +123,7 @@ public class OrderController {
     
     @PostMapping("bill")
     public OrderBill saveOrder(@RequestParam Map<String, String> request,
-            @RequestHeader("Authorization") String authHeader) throws IOException {
+    @RequestHeader("Authorization") String authHeader) throws IOException {
 
         final String jwt = authHeader.substring(7);
         final Integer userId = jwtService.extractUserId(jwt);
@@ -132,7 +136,8 @@ public class OrderController {
 
         User user = userOptional.get();
 
-        Optional<OrderEntity> orderOptional = orderRepository.findByUserId(userId);
+        Optional<OrderEntity> orderOptional = orderRepository.findTopByUserIdOrderByIdDesc(userId);
+        System.err.println(orderOptional.get().getId());
         OrderEntity order = orderOptional.get();
 
         int flatNo = Integer.parseInt((String) request.get("flatNo")); // Parse string to int
@@ -144,7 +149,7 @@ public class OrderController {
         String email = (String) request.get("email");
         String creditCardHolderName = (String) request.get("creditCardHolderName");
         String creditCardType = (String) request.get("creditCardType");
-        int creditCardNumber = Integer.parseInt((String) request.get("creditCardNumber"));
+        Long creditCardNumber = Long.parseLong((String) request.get("creditCardNumber"));
         int expMonth = Integer.parseInt((String) request.get("expMonth"));
         int expYear = Integer.parseInt((String) request.get("expYear"));
         int cvv = Integer.parseInt((String) request.get("cvv"));
@@ -162,5 +167,26 @@ public class OrderController {
                 // You can now return the savedOrder object or perform further actions
                 return savedOrder;
     }
+
+    @GetMapping("confirmation/{order}")
+    public ConfirmationResponse getMethodName(@PathVariable Integer order) {
+        OrderEntity myOrder = orderRepository.findById(order).get();
+        
+        return ConfirmationResponse.builder()
+        .order(myOrder)
+        .orderProduct(orderProductRepository.findByOrderId(myOrder.getId()))
+        .orderBill(orderBillRepository.findByOrderId(myOrder.getId()))
+        .build();
+    }
+
+    @GetMapping("my")
+    public List<OrderEntity> getMyOrders(@RequestHeader("Authorization") String authHeader) {
+        final String jwt = authHeader.substring(7);
+        final Integer userId = jwtService.extractUserId(jwt);
+        User user = userRepository.findById(userId).get();
+        
+        return orderRepository.findAllByUserId(user.getId());
+    }
+    
 
 }

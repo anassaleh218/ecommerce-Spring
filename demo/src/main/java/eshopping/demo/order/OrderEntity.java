@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import eshopping.demo.OrderProduct.OrderProduct;
+import eshopping.demo.orderBill.OrderBill;
 
 // import java.util.Set;
 
@@ -44,9 +45,12 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    @OneToMany(mappedBy = "order")
+    private Set<OrderBill> orderBills = new HashSet<>();
 
     @OneToMany(mappedBy = "order")
     private Set<OrderProduct> orderProducts = new HashSet<>();
+
 
 
 }

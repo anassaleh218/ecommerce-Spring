@@ -54,12 +54,17 @@
                 <li class="nav-item">
                   <button><i class="ti-search"></i></button>
                 </li>
+                <!-- ______________ -->
                 <li class="nav-item">
                   <button>
-                    <i class="ti-shopping-cart"></i
-                    ><span class="nav-shop__circle">3</span>
+                    <a href="cart.html">
+                      <i class="ti-shopping-cart"></i
+                      >
+                    </a>
                   </button>
                 </li>
+                <!-- ______________ -->
+
                 <li class="nav-item">
                   <a class="button button-header" href="login.html">Login</a>
                 </li>
@@ -258,24 +263,8 @@
     <!-- new -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="asstes/js/project.js"></script>
     <script>
-      function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
-
-      let token = getCookie("token");
       if (token) {
         window.location.href = "products.html";
       }
@@ -308,32 +297,7 @@
             console.log(data);
           },
         });
-      });
-
-      // $("#login").submit(function(event){
-      //     event.preventDefault();
-
-      // 	var settings = {
-      // 	"url": "http://localhost:8081/api/v1/auth/authenticate",
-      // 	"method": "POST",
-      // 	"timeout": 0,
-      // 	"headers": {
-      // 		"Content-Type": "application/json"
-      // 	},
-      // 	"data": JSON.stringify({
-      // 		"email": document.getElementById('email').value,
-      // 		"password": document.getElementById('password').value
-      // 	}),
-      // 	};
-
-      // 	$.ajax(settings).done(function (response) {
-      // 		if(response["token"]){
-      // 			document.cookie = "token="+response["token"];
-      // 		}
-      // 		console.log(response);
-      // 	});
-
-      // })
+      })
     </script>
   </body>
 </html>

@@ -49,17 +49,31 @@
                 <li class="nav-item">
                   <a class="nav-link" href="products.html">Products</a>
                 </li>
+                <li class="nav-item">
+                  <a
+                    id="myOrders"
+                    class="nav-link"
+                    href="my-orders.html"
+                    style="display: none"
+                    >My Orders</a
+                  >
+                </li>
               </ul>
               <ul class="nav-shop">
                 <li class="nav-item">
                   <button><i class="ti-search"></i></button>
                 </li>
+                <!-- ______________ -->
                 <li class="nav-item">
                   <button>
-                    <i class="ti-shopping-cart"></i
-                    ><span class="nav-shop__circle">3</span>
+                    <a href="cart.html">
+                      <i class="ti-shopping-cart"></i
+                      >
+                    </a>
                   </button>
                 </li>
+                <!-- ______________ -->
+
                 <li class="nav-item">
                   <a class="button button-header" href="login.html">Login</a>
                 </li>
@@ -269,28 +283,12 @@
     <script src="asstes/vendors/jquery.ajaxchimp.min.js"></script>
     <script src="asstes/vendors/mail-script.js"></script>
     <script src="asstes/js/main.js"></script>
+    <script src="asstes/js/project.js"></script>
 
     <!-- new -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
-
-      let token = getCookie("token");
       if (token) {
         window.location.href = "products.html";
       }

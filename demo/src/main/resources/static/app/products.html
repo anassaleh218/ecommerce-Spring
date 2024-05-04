@@ -49,6 +49,15 @@
                 <li class="nav-item">
                   <a class="nav-link" href="products.html">Products</a>
                 </li>
+                <li class="nav-item">
+                  <a
+                    id="myOrders"
+                    class="nav-link"
+                    href="my-orders.html"
+                    style="display: none"
+                    >My Orders</a
+                  >
+                </li>
 
                 <li class="nav-item">
                   <a
@@ -64,12 +73,16 @@
                 <li class="nav-item">
                   <button><i class="ti-search"></i></button>
                 </li>
+                <!-- ______________ -->
                 <li class="nav-item">
                   <button>
-                    <i class="ti-shopping-cart"></i
-                    ><span class="nav-shop__circle">3</span>
+                    <a href="cart.html">
+                      <i class="ti-shopping-cart"></i
+                      >
+                    </a>
                   </button>
                 </li>
+                <!-- ______________ -->
                 <li id="loginNavItem" class="nav-item">
                   <a
                     id="loginButton"
@@ -123,9 +136,7 @@
               <ul class="main-categories">
                 <li class="common-filter">
                   <form>
-                    <ul id="cat">
-
-                    </ul>
+                    <ul id="cat"></ul>
                   </form>
                 </li>
               </ul>
@@ -304,6 +315,7 @@
     <script src="asstes/vendors/jquery.ajaxchimp.min.js"></script>
     <script src="asstes/vendors/mail-script.js"></script>
     <script src="asstes/js/main.js"></script>
+    <script src="asstes/js/project.js"></script>
 
     <!-- new -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
@@ -316,91 +328,18 @@
       }).done(function (data) {
         console.log(data);
         for (i = 0; i < data.length; i++) {
-              var cardHtml = `<li class="filter-list">
+          var cardHtml = `<li class="filter-list">
                         <a href="?category=${data[i]}">
                           <span> ${data[i]}</span></label>
                         </a>
                       </li>`;
-              $("#cat").append(cardHtml);
-            }
-      });
-
-      function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
+          $("#cat").append(cardHtml);
         }
-        return "";
-      }
-
-      let token = getCookie("token");
-      let role = getCookie("role");
-
-      function deleteCookie(cookieName) {
-        document.cookie =
-          cookieName + "=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-      }
-
-
-      function showErrorAlert(error) {
-        // Create an alert element
-        var alertDiv = document.createElement("div");
-        alertDiv.className = "alert alert-danger alert-dismissible fade show";
-        alertDiv.setAttribute("role", "alert");
-
-        // Add alert content
-        alertDiv.innerHTML = "<strong>Error!</strong> " + error;
-
-        // Add close button
-        var closeButton = document.createElement("button");
-        closeButton.type = "button";
-        closeButton.className = "close";
-        closeButton.setAttribute("data-dismiss", "alert");
-        closeButton.setAttribute("aria-label", "Close");
-        closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
-        alertDiv.appendChild(closeButton);
-
-        // Insert alert before appending the body
-        document.body.insertBefore(alertDiv, document.body.firstChild);
-      }
+      });
 
 
       function updateTable() {
         $("#card").empty();
-
-        if (token && role) {
-          console.log(token);
-          console.log(role);
-          if (role == "ADMIN") {
-            document.getElementById("add").style.display = "block";
-          }
-          // Delete register button
-          document.getElementById("registerNavItem").style.display = "none";
-
-          // Change login button to log out button
-          var loginButton = document.getElementById("loginButton");
-          loginButton.textContent = "Logout";
-          loginButton.onclick = logout; // Assigning the logout function to the onclick event
-
-          // logout function deletes token and redirects to login page
-          function logout() {
-            // Code to delete token
-            deleteCookie("token");
-            deleteCookie("role");
-            // Code to redirect to login page
-            // window.location.href = 'login.html';
-          }
-        } else {
-          showErrorAlert("you must login first");
-        }
         const urlParams = new URLSearchParams(window.location.search);
         const category = urlParams.get("category");
         if (category) {
@@ -430,7 +369,9 @@
                             <li>
                                 <form class="addtocart" method="post">
                                     <input type="hidden" name="quantity" value="1">
-                                    <input type="hidden" name="productId" value="`+data[i].id+`">
+                                    <input type="hidden" name="productId" value="` +
+                data[i].id +
+                `">
                                     <button><i class="ti-shopping-cart"></i></button>
                                 </form>
                             </li>
@@ -457,7 +398,7 @@
                 </div>
                 </div>
             `;
-              $("#card").append(cardHtml);
+            $("#card").append(cardHtml);
             }
           },
           error: function () {
@@ -467,44 +408,35 @@
       }
       updateTable();
 
+      // Use event delegation to handle form submission
+      $(document).on("submit", ".addtocart", function (event) {
+        event.preventDefault();
+        var url = "http://127.0.0.1:8081/cart/add";
+        var formData = $(this).serializeArray();
+        var data = {};
+        // Convert form data array to JSON object
+        formData.forEach(function (item) {
+          data[item.name] = item.value;
+        });
 
-
-
-
-
-
-      
-
-// Use event delegation to handle form submission
-$(document).on("submit", ".addtocart", function(event){
-    event.preventDefault();
-    var url = "http://127.0.0.1:8081/cart/add";
-    var formData = $(this).serializeArray();
-    var data = {};
-    // Convert form data array to JSON object
-    formData.forEach(function(item) {
-        data[item.name] = item.value;
-    });
-
-    $.ajax({
-        url: url,
-        type: "POST",
-        dataType: "json",
-        headers: {
+        $.ajax({
+          url: url,
+          type: "POST",
+          dataType: "json",
+          headers: {
             Authorization: "Bearer " + token,
-        },
-        contentType: "application/json",
-        data: JSON.stringify(data), // Serialize data as JSON string
-        success: function(data){
+          },
+          contentType: "application/json",
+          data: JSON.stringify(data), // Serialize data as JSON string
+          success: function (data) {
             console.log(data);
             updateTable();
-        },
-        error: function(){
+          },
+          error: function () {
             console.log("error");
-        }
-    });
-});
-      
+          },
+        });
+      });
     </script>
   </body>
 </html>

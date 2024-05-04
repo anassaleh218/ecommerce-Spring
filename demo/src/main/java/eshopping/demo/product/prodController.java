@@ -9,12 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,9 +51,7 @@ public class prodController {
         String name = (String) request.get("name");
         String description = (String) request.get("description");
         int quantity = Integer.parseInt((String) request.get("quantity")); // Parse string to int
-        // String img = (String) request.get("img");
         String img = (String) imageService.saveImage(file);
-        
         Category category = Category.valueOf((String) request.get("category"));
         Color color =Color.valueOf((String) request.get("color")) ;
         float price = Float.parseFloat((String) request.get("price"));

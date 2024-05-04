@@ -49,6 +49,15 @@
                 <li class="nav-item">
                   <a class="nav-link" href="products.html">Products</a>
                 </li>
+                <li class="nav-item">
+                  <a
+                    id="myOrders"
+                    class="nav-link"
+                    href="my-orders.html"
+                    style="display: none"
+                    >My Orders</a
+                  >
+                </li>
 
                 <li class="nav-item">
                   <a
@@ -64,12 +73,16 @@
                 <li class="nav-item">
                   <button><i class="ti-search"></i></button>
                 </li>
+                <!-- ______________ -->
                 <li class="nav-item">
                   <button>
-                    <i class="ti-shopping-cart"></i
-                    ><span class="nav-shop__circle">3</span>
+                    <a href="cart.html">
+                      <i class="ti-shopping-cart"></i
+                      >
+                    </a>
                   </button>
                 </li>
+                <!-- ______________ -->
                 <li id="loginNavItem" class="nav-item">
                   <a
                     id="loginButton"
@@ -127,25 +140,31 @@
                   <th scope="col">Price</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Total</th>
-                  <th scope="col">Remove</th>
+                  <!-- <th scope="col">Remove</th> -->
                 </tr>
               </thead>
               <tbody id="cartItems">
                 <!-- Cart items will be appended here -->
-            </tbody>
-            <tfoot>
+              </tbody>
+              <tfoot>
                 <tr class="out_button_area">
-                    <td class="d-none-l"></td>
-                    <td class=""></td>
-                    <td></td>
-                    <td colspan="3">
-                        <div class="checkout_btn_inner d-flex align-items-center">
-                            <a class="gray_btn" href="./products.php">Continue Shopping</a>
-                            <a class="primary-btn ml-2" href="cart.php?add">Proceed to checkout</a>
-                        </div>
-                    </td>
+                  <td class="d-none-l"></td>
+                  <td class=""></td>
+                  <td></td>
+                  <td colspan="3">
+                    <div class="checkout_btn_inner d-flex align-items-center">
+                      <a class="gray_btn" href="./products.html"
+                        >Continue Shopping</a
+                      >
+                      <form id="order" method="post">
+                        <button class="btn primary-btn ml-2" type="submit">
+                          Proceed to checkout
+                        </button>
+                      </form>
+                    </div>
+                  </td>
                 </tr>
-            </tfoot>
+              </tfoot>
             </table>
           </div>
         </div>
@@ -293,85 +312,14 @@
     <script src="asstes/vendors/jquery.ajaxchimp.min.js"></script>
     <script src="asstes/vendors/mail-script.js"></script>
     <script src="asstes/js/main.js"></script>
+    <script src="asstes/js/project.js"></script>
 
     <!-- new -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
-
-      let token = getCookie("token");
-      let role = getCookie("role");
-
-      function deleteCookie(cookieName) {
-        document.cookie =
-          cookieName + "=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-      }
-
-      function showErrorAlert(error) {
-        // Create an alert element
-        var alertDiv = document.createElement("div");
-        alertDiv.className = "alert alert-danger alert-dismissible fade show";
-        alertDiv.setAttribute("role", "alert");
-
-        // Add alert content
-        alertDiv.innerHTML = "<strong>Error!</strong> " + error;
-
-        // Add close button
-        var closeButton = document.createElement("button");
-        closeButton.type = "button";
-        closeButton.className = "close";
-        closeButton.setAttribute("data-dismiss", "alert");
-        closeButton.setAttribute("aria-label", "Close");
-        closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
-        alertDiv.appendChild(closeButton);
-
-        // Insert alert before appending the body
-        document.body.insertBefore(alertDiv, document.body.firstChild);
-      }
-
       function updateTable() {
         $("#card").empty();
-
-        if (token && role) {
-          console.log(token);
-          console.log(role);
-          if (role == "ADMIN") {
-            document.getElementById("add").style.display = "block";
-          }
-          // Delete register button
-          document.getElementById("registerNavItem").style.display = "none";
-
-          // Change login button to log out button
-          var loginButton = document.getElementById("loginButton");
-          loginButton.textContent = "Logout";
-          loginButton.onclick = logout; // Assigning the logout function to the onclick event
-
-          // logout function deletes token and redirects to login page
-          function logout() {
-            // Code to delete token
-            deleteCookie("token");
-            deleteCookie("role");
-            // Code to redirect to login page
-            // window.location.href = 'login.html';
-          }
-        } else {
-          showErrorAlert("you must login first");
-        }
 
         var url = "http://127.0.0.1:8081/cart/cartprods";
 
@@ -385,38 +333,64 @@
           success: function (data) {
             console.log(data);
             for (i = 0; i < data.length; i++) {
-                var cardHtml = `
+              var cardHtml = `
                 <tr>
                     <td>
-                        <img src="imgs/${data[i].img}" width="150" alt="">
+                        <img src="imgs/${
+                          data[i]["product"].img
+                        }" width="150" alt="">
                     </td>
                     <td>
-                        <p>${data[i].name}</p>
+                        <p>${data[i]["product"].name}</p>
                     </td>
                     <td>
-                        <h5>$${data[i].price}</h5>
+                        <h5>$${data[i]["product"].price}</h5>
                     </td>
                     <td>
-                        <h5>${data[i].quantity}</h5>
+                        <h5>${data[i]["quantity"]}</h5>
                     </td>
                     <td>
-                        <h5>$${data[i].start_price * data[i].quantity}</h5>
+                        <h5>$${
+                          data[i]["product"].price * data[i]["quantity"]
+                        }</h5>
                     </td>
-                    <td>
-                        <a class="btn btn-danger" href="cart.php?id=${data[i].id}">Remove</a>
+                    <!--       <td>
+                        <a class="btn btn-danger" href="cart.php?id=${
+                          data[i]["product"].id
+                        }">Remove</a>
                     </td>
+                  -->
                 </tr>
             `;
-            $("#cartItems").append(cardHtml);
-        }
+              $("#cartItems").append(cardHtml);
+            }
           },
           error: function () {
             console.log("error happened");
           },
         });
       }
-
       updateTable();
+
+      $("#order").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+          url: "http://127.0.0.1:8081/order/add",
+          type: "POST",
+          datatype: "json",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          success: function (data) {
+            showMessageAlert("added", "success");
+            window.location.href = "checkout.html";
+          },
+          error: function () {
+            console.log("error");
+            console.log(data);
+          },
+        });
+      });
     </script>
   </body>
 </html>

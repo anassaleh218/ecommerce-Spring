@@ -49,7 +49,15 @@
                 <li class="nav-item">
                   <a class="nav-link" href="products.html">Products</a>
                 </li>
-
+                <li class="nav-item">
+                  <a
+                    id="myOrders"
+                    class="nav-link"
+                    href="my-orders.html"
+                    style="display: none"
+                    >My Orders</a
+                  >
+                </li>
                 <li class="nav-item">
                   <a
                     id="add"
@@ -64,12 +72,18 @@
                 <li class="nav-item">
                   <button><i class="ti-search"></i></button>
                 </li>
+                <!-- ______________ -->
                 <li class="nav-item">
                   <button>
-                    <i class="ti-shopping-cart"></i
-                    ><span class="nav-shop__circle">3</span>
+                    <a href="cart.html">
+                      <i class="ti-shopping-cart"></i
+                      >
+                      
+                    </a>
                   </button>
                 </li>
+                <!-- ______________ -->
+
                 <li id="loginNavItem" class="nav-item">
                   <a
                     id="loginButton"
@@ -322,83 +336,13 @@
     <script src="asstes/vendors/jquery.ajaxchimp.min.js"></script>
     <script src="asstes/vendors/mail-script.js"></script>
     <script src="asstes/js/main.js"></script>
+    <script src="asstes/js/project.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-      function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
-
-      let role = getCookie("role");
-      let token = getCookie("token");
       if (role == "USER") {
         window.location.href = "products.html";
-      }
-
-      function deleteCookie(cookieName) {
-          document.cookie =
-            cookieName + "=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-        }
-
-      if (token && role) {
-        console.log(token);
-        console.log(role);
-        if (role == "ADMIN") {
-          document.getElementById("add").style.display = "block";
-        }
-
-        // Delete register button
-        document.getElementById("registerNavItem").style.display = "none";
-
-        // Change login button to log out button
-        var loginButton = document.getElementById("loginButton");
-        loginButton.textContent = "Logout";
-        loginButton.onclick = logout;
-
-        // logout function deletes token and redirects to login page
-        function logout() {
-              // Code to delete token
-              deleteCookie("token");
-              deleteCookie("role");
-              // Code to redirect to login page
-              // window.location.href = 'login.html'; // Assigning the logout function to the onclick event
-
-        }
-      }
-
-      function showErrorAlert(error) {
-        // Create an alert element
-        var alertDiv = document.createElement("div");
-        alertDiv.className = "alert alert-danger alert-dismissible fade show";
-        alertDiv.setAttribute("role", "alert");
-
-        // Add alert content
-        alertDiv.innerHTML = "<strong>Error!</strong> " + error;
-
-        // Add close button
-        var closeButton = document.createElement("button");
-        closeButton.type = "button";
-        closeButton.className = "close";
-        closeButton.setAttribute("data-dismiss", "alert");
-        closeButton.setAttribute("aria-label", "Close");
-        closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
-        alertDiv.appendChild(closeButton);
-
-        // Insert alert before appending the body
-        document.body.insertBefore(alertDiv, document.body.firstChild);
       }
 
       $("#prodForm").submit(function (event) {
@@ -422,7 +366,7 @@
             window.location.href = "products.html";
           },
           error: function () {
-            showErrorAlert("you must be admin, but your token is for User");
+            showMessageAlert("you must be admin, but your token is for User");
             console.log("error");
           },
         });

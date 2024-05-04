@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import eshopping.demo.cart.Cart;
 import eshopping.demo.cart.CartRepository;
 import eshopping.demo.config.JwtService;
+import eshopping.demo.auth.AuthenticationResponse;
 import eshopping.demo.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 
