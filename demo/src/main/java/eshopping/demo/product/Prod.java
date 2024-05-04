@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import eshopping.demo.CartProduct.CartProduct;
-import eshopping.demo.order.OrderProduct;
+import eshopping.demo.OrderProduct.OrderProduct;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -48,7 +48,7 @@ public class Prod {
     @OneToMany(mappedBy = "product")
     private Set<OrderProduct> orderProducts = new HashSet<>();
     
-    @OneToMany(mappedBy = "cartProduct")
+    @OneToMany(mappedBy = "product")
     private Set<CartProduct> cartProducts = new HashSet<>();
 
 

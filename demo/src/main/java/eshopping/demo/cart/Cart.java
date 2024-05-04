@@ -28,8 +28,9 @@ public class Cart {
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "cart")
-    private Set<CartProduct> cartProducts = new HashSet<>();
+// // In Cart class
+// @OneToMany(mappedBy = "cartItems") // Update field name if needed
+// private Set<CartProduct> cartProducts;
 
     public int getId() {
         return id;

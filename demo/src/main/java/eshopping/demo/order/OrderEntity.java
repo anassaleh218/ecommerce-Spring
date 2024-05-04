@@ -3,6 +3,8 @@ package eshopping.demo.order;
 import java.util.HashSet;
 import java.util.Set;
 
+import eshopping.demo.OrderProduct.OrderProduct;
+
 // import java.util.Set;
 
 import eshopping.demo.user.User;
@@ -24,7 +26,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-// @Builder
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -41,14 +43,6 @@ public class OrderEntity {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-
-
-
-    // @ManyToMany
-    // @JoinTable(name = "order_product",
-    //            joinColumns = @JoinColumn(name = "order_id"),
-    //            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    // private Set<Prod> products = new HashSet<>();
 
 
     @OneToMany(mappedBy = "order")

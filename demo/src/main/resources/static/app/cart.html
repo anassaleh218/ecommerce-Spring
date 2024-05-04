@@ -98,12 +98,13 @@
       <div class="container h-100">
         <div class="blog-banner">
           <div class="text-center">
-            <h1>product</h1>
+            <h1>Shopping Cart</h1>
             <nav aria-label="breadcrumb" class="banner-breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
+
                 <li class="breadcrumb-item active" aria-current="page">
-                  product
+                  Shopping Cart
                 </li>
               </ol>
             </nav>
@@ -113,12 +114,93 @@
     </section>
     <!-- ================ end banner area ================= -->
 
-    <!--================Single Product Area =================-->
-    <div class="product_image_area">
-      <div class="container my-3" id="card"></div>
-    </div>
-    <!--================End Single Product Area =================-->
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+      <div class="container">
+        <div class="cart_inner">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Product Image</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+              <tbody id="cartItems">
+                <!-- Cart items will be appended here -->
+            </tbody>
+            <tfoot>
+                <tr class="out_button_area">
+                    <td class="d-none-l"></td>
+                    <td class=""></td>
+                    <td></td>
+                    <td colspan="3">
+                        <div class="checkout_btn_inner d-flex align-items-center">
+                            <a class="gray_btn" href="./products.php">Continue Shopping</a>
+                            <a class="primary-btn ml-2" href="cart.php?add">Proceed to checkout</a>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================End Cart Area =================-->
 
+    <!-- ================ Subscribe section start ================= -->
+    <section class="subscribe-position">
+      <div class="container">
+        <div class="subscribe text-center">
+          <h3 class="subscribe__title">Get Update From Anywhere</h3>
+          <p>
+            Bearing Void gathering light light his eavening unto dont afraid
+          </p>
+          <div id="mc_embed_signup">
+            <form
+              target="_blank"
+              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+              method="get"
+              class="subscribe-form form-inline mt-5 pt-1"
+            >
+              <div class="form-group ml-sm-auto">
+                <input
+                  class="form-control mb-1"
+                  type="email"
+                  name="EMAIL"
+                  placeholder="Enter your email"
+                  onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Your Email Address '"
+                />
+                <div class="info"></div>
+              </div>
+              <button
+                class="button button-subscribe mr-auto mb-1"
+                type="submit"
+              >
+                Subscribe Now
+              </button>
+              <div style="position: absolute; left: -5000px">
+                <input
+                  name="b_36c4fd991d266f23781ded980_aefe40901a"
+                  tabindex="-1"
+                  value=""
+                  type="text"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================ Subscribe section end ================= -->
+
+    <!--================ End =================-->
 
     <!-- footer -->
     <!--================ Start footer Area  =================-->
@@ -232,6 +314,9 @@
         return "";
       }
 
+      let token = getCookie("token");
+      let role = getCookie("role");
+
       function deleteCookie(cookieName) {
         document.cookie =
           cookieName + "=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
@@ -259,15 +344,9 @@
         document.body.insertBefore(alertDiv, document.body.firstChild);
       }
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const prodValue = urlParams.get("prod");
-
       function updateTable() {
         $("#card").empty();
 
-        var url = "http://127.0.0.1:8081/prod/" + prodValue + "/view";
-        let token = getCookie("token");
-        let role = getCookie("role");
         if (token && role) {
           console.log(token);
           console.log(role);
@@ -293,88 +372,51 @@
         } else {
           showErrorAlert("you must login first");
         }
+
+        var url = "http://127.0.0.1:8081/cart/cartprods";
+
         $.ajax({
           url: url,
           type: "GET",
           datatype: "json",
-          // headers: {
-          //   Authorization: "Bearer " + token,
-          // },
+          headers: {
+            Authorization: "Bearer " + token,
+          },
           success: function (data) {
             console.log(data);
-            var cardHtml = `<div class="row s_product_inner">
-			<div class="col-lg-6">
-						<img class="img-fluid" src="imgs/${data["img"]}" alt="">
-			</div>
-			<div class="col-lg-5 offset-lg-1">
-				<div class="s_product_text">
-					<h3>${data["name"]}</h3>
-					<h2>$${data["price"]}</h2>
-					<ul class="list">
-						<li><span>category</span> : ${data["category"]}</li>
-						<li><span>Color</span> : ${data["color"]}</li>
-
-						<?php if($product["size"]!= null){?>
-							<li><span>Size</span> : ${data["size"]}</li>
-						<?php }?>
-
-						<li><span>Availibility</span> : ${data["status"]}</li>
-					</ul>
-
-					<p>description: ${data["description"]}</p>
-					<div>
-						<label for="qty">Quantity:</label>
-						<form class="addtocart">
-							<input type="number" name="quantity" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<input type="hidden" name="id" value="${data["id"]}">
-							<button class="button primary-btn d-block mt-5">Add to Cart</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>`;
-            $("#card").append(cardHtml);
+            for (i = 0; i < data.length; i++) {
+                var cardHtml = `
+                <tr>
+                    <td>
+                        <img src="imgs/${data[i].img}" width="150" alt="">
+                    </td>
+                    <td>
+                        <p>${data[i].name}</p>
+                    </td>
+                    <td>
+                        <h5>$${data[i].price}</h5>
+                    </td>
+                    <td>
+                        <h5>${data[i].quantity}</h5>
+                    </td>
+                    <td>
+                        <h5>$${data[i].start_price * data[i].quantity}</h5>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="cart.php?id=${data[i].id}">Remove</a>
+                    </td>
+                </tr>
+            `;
+            $("#cartItems").append(cardHtml);
+        }
           },
           error: function () {
             console.log("error happened");
           },
         });
       }
+
       updateTable();
-
-
-
-
-      
-// Use event delegation to handle form submission
-$(document).on("submit", ".addtocart", function(event){
-    event.preventDefault();
-    var url = "http://127.0.0.1:8081/cart/add";
-    var formData = $(this).serializeArray();
-    var data = {};
-    // Convert form data array to JSON object
-    formData.forEach(function(item) {
-        data[item.name] = item.value;
-    });
-
-    $.ajax({
-        url: url,
-        type: "POST",
-        dataType: "json",
-        headers: {
-            Authorization: "Bearer " + token,
-        },
-        contentType: "application/json",
-        data: JSON.stringify(data), // Serialize data as JSON string
-        success: function(data){
-            console.log(data);
-            updateTable();
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
-});
     </script>
   </body>
 </html>

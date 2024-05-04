@@ -1,5 +1,6 @@
-package eshopping.demo.order;
+package eshopping.demo.OrderProduct;
 
+import eshopping.demo.order.OrderEntity;
 import eshopping.demo.product.Prod;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
