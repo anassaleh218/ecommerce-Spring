@@ -2,6 +2,7 @@ package eshopping.demo.auth;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import eshopping.demo.auth.AuthenticationResponse;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.RequestMapping;

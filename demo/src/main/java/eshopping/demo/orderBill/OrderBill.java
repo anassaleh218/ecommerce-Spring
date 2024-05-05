@@ -10,11 +10,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -43,7 +47,7 @@ public class OrderBill {
     
         private String creditCardType;
     
-        private Integer creditCardNumber;
+        private Long creditCardNumber;
     
         private Integer expMonth;
     
@@ -51,18 +55,18 @@ public class OrderBill {
     
         private Integer cvv;
     
-        @OneToOne(cascade = CascadeType.ALL)
+        @ManyToOne(cascade = CascadeType.ALL)
         @JoinColumn(name = "buyer_id",referencedColumnName = "id")
         private User user;
     
-        @OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "order_id",referencedColumnName = "id")
+        @ManyToOne
+        @JoinColumn(name = "order_id", referencedColumnName = "id")
         private OrderEntity order;
-    
+        
         private Timestamp createdAt;
 
         public OrderBill(Integer flatNo, Integer buildingNo, String street, String city, String country, String phone,
-                String email, String creditCardHolderName, String creditCardType, Integer creditCardNumber,
+                String email, String creditCardHolderName, String creditCardType, Long creditCardNumber,
                 Integer expMonth, Integer expYear, Integer cvv, User user, OrderEntity order, Timestamp createdAt) {
             this.flatNo = flatNo;
             this.buildingNo = buildingNo;
