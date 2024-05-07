@@ -19,16 +19,16 @@ function deleteCookie(cookieName) {
     cookieName + "=; Path=/app; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
 
+function insertAfter(newNode, existingNode) {
+  existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+}
 function showMessageAlert(message, state = "danger") {
-  // Create an alert element
   var alertDiv = document.createElement("div");
   alertDiv.className = "alert alert-" + state + " alert-dismissible fade show";
   alertDiv.setAttribute("role", "alert");
 
-  // Add alert content
   alertDiv.innerHTML = "<strong>Message!</strong> " + message;
 
-  // Add close button
   var closeButton = document.createElement("button");
   closeButton.type = "button";
   closeButton.className = "close";
@@ -36,10 +36,23 @@ function showMessageAlert(message, state = "danger") {
   closeButton.setAttribute("aria-label", "Close");
   closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
   alertDiv.appendChild(closeButton);
-
-  // Insert alert before appending the body
-  document.body.insertBefore(alertDiv, document.body.firstChild);
+  myHeader = document.getElementsByTagName("header")
+  insertAfter(alertDiv, myHeader[0])
+  // document.body.insertBefore(alertDiv, document.body.firstChild);
+  // document.body.insertAdjacentElement("afterEnd", alertDiv, myHeader[0]);
 }
+
+function alertIfErrores(data){
+  console.log(data)
+  allErrors = []
+  data.forEach(error => {
+    if(error.defaultMessage){
+      allErrors.push(error.defaultMessage)
+      showMessageAlert(error.defaultMessage)
+    }
+  });
+}
+
 
 var token = getCookie("token");
 var role = getCookie("role");
@@ -66,6 +79,7 @@ if (token && role) {
     deleteCookie("token");
     deleteCookie("role");
   }
-} else {
-  showMessageAlert("you must login first");
-}
+} 
+// else {
+//   showMessageAlert("you must login first");
+// }

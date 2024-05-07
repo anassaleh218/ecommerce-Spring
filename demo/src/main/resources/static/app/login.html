@@ -269,6 +269,8 @@
         window.location.href = "products.html";
       }
 
+
+
       $("#login").submit(function (event) {
         event.preventDefault();
         $.ajax({
@@ -292,7 +294,8 @@
             }
             console.log(data);
           },
-          error: function () {
+          error: function (data) {
+            alertIfErrores(data.responseJSON)
             console.log("error");
             console.log(data);
           },

@@ -40,7 +40,6 @@ public class User implements UserDetails {
 
 
     @NotNull
-
     private String name;
 
 

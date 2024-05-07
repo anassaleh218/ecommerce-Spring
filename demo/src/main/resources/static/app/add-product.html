@@ -365,9 +365,9 @@
             console.log(data);
             window.location.href = "products.html";
           },
-          error: function () {
-            showMessageAlert("you must be admin, but your token is for User");
+          error: function (data) {
             console.log("error");
+            alertIfErrores(JSON.parse(data.responseText))
           },
         });
       });

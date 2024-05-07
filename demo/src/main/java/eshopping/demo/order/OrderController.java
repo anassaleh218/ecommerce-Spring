@@ -7,6 +7,7 @@ import eshopping.demo.CartProduct.CartProductRepository;
 import eshopping.demo.OrderProduct.OrderProduct;
 import eshopping.demo.OrderProduct.OrderProductRepository;
 import eshopping.demo.auth.AuthenticationResponse;
+import eshopping.demo.auth.AuthorizationAspect;
 import eshopping.demo.cart.Cart;
 import eshopping.demo.cart.CartRepository;
 import eshopping.demo.config.JwtService;
@@ -50,19 +51,11 @@ public class OrderController {
     private final CartRepository cartRepository;
     private final CartProductRepository cartProductRepository;
 
+    private AuthorizationAspect authorizationAspect;
     @PostMapping("add")
     public ResponseEntity<String> newOrder(@RequestHeader("Authorization") String authHeader) {
-
-        final String jwt = authHeader.substring(7);
-        final Integer userId = jwtService.extractUserId(jwt);
-
-        Optional<User> userOptional = userRepository.findById(userId);
-
-        if (!userOptional.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        User user = userOptional.get();
+        User user = authorizationAspect.user;
+        Integer userId = user.getId();
 
         OrderEntity newOrder = OrderEntity.builder()
                 .user(user)
@@ -124,17 +117,8 @@ public class OrderController {
     @PostMapping("bill")
     public OrderBill saveOrder(@RequestParam Map<String, String> request,
     @RequestHeader("Authorization") String authHeader) throws IOException {
-
-        final String jwt = authHeader.substring(7);
-        final Integer userId = jwtService.extractUserId(jwt);
-
-        Optional<User> userOptional = userRepository.findById(userId);
-
-        // if (!userOptional.isPresent()) {
-        //     return "User Not Found";
-        // }
-
-        User user = userOptional.get();
+        User user = authorizationAspect.user;
+        Integer userId = user.getId();
 
         Optional<OrderEntity> orderOptional = orderRepository.findTopByUserIdOrderByIdDesc(userId);
         System.err.println(orderOptional.get().getId());
@@ -181,10 +165,7 @@ public class OrderController {
 
     @GetMapping("my")
     public List<OrderEntity> getMyOrders(@RequestHeader("Authorization") String authHeader) {
-        final String jwt = authHeader.substring(7);
-        final Integer userId = jwtService.extractUserId(jwt);
-        User user = userRepository.findById(userId).get();
-        
+        User user = authorizationAspect.user;        
         return orderRepository.findAllByUserId(user.getId());
     }
     
