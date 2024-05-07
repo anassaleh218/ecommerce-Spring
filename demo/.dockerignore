@@ -1,0 +1,13 @@
+target/*
+!target/my-application.jar
+
+.idea/
+.project
+.classpath
+
+.gitignore
+*.log
+
+**/target/surefire-reports/
+
+**/target/site/jacoco/
