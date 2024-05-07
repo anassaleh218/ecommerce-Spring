@@ -1,0 +1,28 @@
+context User :: register(username: string, password: string,  email: string)
+pre: (self.password)->size() > 8
+
+
+context User ::  addProduct(descripton:string , color : enum ,size:enum , name:string , category:enum , product_quantity : int , product_price : int , image : string)
+pre: self.role==ADMIN
+
+
+context User :: new_order(id , buyer_id,status)
+pre: owner.items_count->size() > 0;
+
+
+context Admin :: delete_product(product_id:int)
+post:  product.product_quantity = 0;
+
+
+
+context Product :: addToCart(id , buyer_id,status)
+pre: product_quantity > 0;
+
+
+
+context User :: new_order(id , buyer_id,status)
+post : product_quantity = product_quantity-1
+
+
+context new_order :: confirm_order(order_id) 
+pre : adding(flatNo, buildingNo, street, city, country, phone, email, creditCardHolderName,creditCardType,creditCardNum,expMonth,expYear,cvv,orderId,buyerId)
