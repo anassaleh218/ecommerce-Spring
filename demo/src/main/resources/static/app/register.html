@@ -318,10 +318,12 @@
             }
             console.log(data);
           },
-          error: function () {
+          error: function (data) {
             console.log("error");
-            console.log(data);
+            console.log(data.responseJSON);
+            alertIfErrores(data.responseJSON)
           },
+
         });
       });
     </script>
