@@ -1,34 +1,37 @@
-version: "3.9"  
+version: "3.9"
 
 services:
-  
   springboot-project:
-    build: .  
+    build: .  # Build the image from the current directory
     ports:
-      - "8081:8081"  
+      - "8081:8081"
     environment:
-      MYSQL_HOST: mysqlcontainer  
-      MYSQL_PORT: 3306             
-      MYSQL_DB_NAME: demo           
-      MYSQL_USER: root              
-      MYSQL_PASSWORD: root 
+      MYSQL_HOST: mysqlcontainer
+      MYSQL_PORT: 3306
+      MYSQL_DB_NAME: demo
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     networks:
-      - networkmysql         
+      - networkmysql
     depends_on:
-      - mysqlcontainer  
+      - mysqlcontainer
+    image: springboot-project:1.0.0  # Add the tag here
 
-  
   mysqlcontainer:
-    image: mysql:8.0 
+    image: mysql:8.0
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root  
-      MYSQL_DATABASE: demo      
-    
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: demo
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
-      - networkmysql  
-    
+      - networkmysql
+
+volumes:
+  mysql-data:
+
 networks:
   networkmysql:
-    external: false  
+    external: false
